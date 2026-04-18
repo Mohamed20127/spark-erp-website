@@ -3,347 +3,275 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="SPARK للتصدير — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم"/>
+<meta name="description" content="SPARK — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم"/>
 <title>SPARK Export — تصدير المنتجات الزراعية</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
-/* ═══════════════════════ DESIGN TOKENS ═══════════════════════ */
-:root {
-  --brand:    #ff4500;
-  --brand-h:  #ff6a35;
-  --brand-l:  #cc3700;
-  --gold:     #f0a500;
-  --green:    #00c896;
-  --bg:       #060810;
-  --bg2:      #0d1018;
-  --bg3:      #151922;
-  --bg4:      #1d2330;
-  --border:   rgba(255,255,255,0.07);
-  --border2:  rgba(255,255,255,0.13);
-  --text:     #f0f2f8;
-  --text2:    #7888a8;
-  --text3:    #363f58;
-  --sans:     'Cairo', sans-serif;
-  --serif:    'Playfair Display', serif;
-  --max:      1140px;
-  --nav-h:    68px;
-  --r:        14px;
-  --shadow:   0 8px 40px rgba(0,0,0,0.5);
+:root{
+  --brand:#f97316;--brand-h:#fb923c;--brand-d:#ea6c10;
+  --bg:#06080f;--bg2:#0d1018;--bg3:#141820;--bg4:#1c2130;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);
+  --text:#eef0f6;--text2:#7a82a0;--text3:#3a4060;
+  --green:#22c55e;--gold:#eab308;
+  --r:14px;--rs:10px;--sans:'Cairo',sans-serif;--max:1140px;--nav-h:66px;
 }
+.light{--bg:#f8fafc;--bg2:#fff;--bg3:#f1f5f9;--bg4:#e2e8f0;--border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.14);--text:#0f172a;--text2:#64748b;--text3:#94a3b8}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:99px}
-::selection{background:rgba(255,69,0,.25)}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:99px}
+::selection{background:rgba(249,115,22,.25)}
 a{text-decoration:none;color:inherit}
-button{font-family:var(--sans);cursor:pointer}
-img{max-width:100%}
+button,input,select,textarea{font-family:var(--sans)}
 
-/* ═══════════════════════ LAYOUT ═══════════════════════ */
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-.section{padding:88px 0}
-.section-sm{padding:60px 0}
+/* ── Layout ─────────────────────────────────────── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+.section-sm{padding:56px 0}
 .col2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.col3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.col4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.col3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.col4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.center{text-align:center}
 
-.chip{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 16px;border-radius:99px;font-size:13px;font-weight:700;
-  letter-spacing:.5px;
-  background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);color:var(--brand);
-  margin-bottom:18px;
-}
-.chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px var(--brand);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-
-.sec-title{font-size:clamp(26px,3.5vw,42px);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:18px}
+/* ── Chip ────────────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.3px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.22);color:var(--brand);margin-bottom:14px}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 6px var(--brand);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.sec-title{font-size:clamp(26px,3.5vw,42px);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:16px}
 .sec-sub{font-size:16px;color:var(--text2);line-height:1.8;max-width:560px}
-.center{text-align:center}.center .sec-sub{margin:0 auto}
+.center .sec-sub{margin:0 auto}
 
-/* ═══════════════════════ BUTTONS ═══════════════════════ */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;font-size:14px;font-weight:700;border:none;transition:all .2s;cursor:pointer;font-family:var(--sans);letter-spacing:.3px}
-.btn-primary{background:var(--brand);color:#fff;box-shadow:0 4px 20px rgba(255,69,0,.4)}
-.btn-primary:hover{background:var(--brand-h);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,69,0,.5)}
+/* ── Buttons ─────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:var(--rs);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:var(--sans)}
+.btn-brand{background:var(--brand);color:#fff;box-shadow:0 4px 18px rgba(249,115,22,.35)}
+.btn-brand:hover{background:var(--brand-h);transform:translateY(-2px);box-shadow:0 7px 24px rgba(249,115,22,.45)}
 .btn-outline{background:transparent;border:1.5px solid var(--border2);color:var(--text2)}
 .btn-outline:hover{border-color:var(--brand);color:var(--brand)}
-.btn-lg{padding:16px 34px;font-size:15px}
-.btn-sm{padding:9px 18px;font-size:13px}
-.btn-gold{background:var(--gold);color:#000;box-shadow:0 4px 20px rgba(240,165,0,.35)}
-.btn-gold:hover{background:#f5c040;transform:translateY(-2px)}
+.btn-lg{padding:15px 32px;font-size:15px}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
-/* ═══════════════════════ NAV ═══════════════════════ */
-nav{
+/* ── Navbar ──────────────────────────────────────── */
+nav#main-nav{
   position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
-  background:rgba(6,8,16,.88);backdrop-filter:blur(20px) saturate(180%);
-  border-bottom:1px solid var(--border);
-  transition:background .3s;
+  background:rgba(6,8,15,.88);backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);transition:background .3s;
 }
-nav.scrolled{background:rgba(6,8,16,.97)}
-.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+nav#main-nav.light{background:rgba(248,250,252,.92)}
+nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-mark{width:36px;height:36px;border-radius:9px;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;box-shadow:0 4px 16px rgba(255,69,0,.45);flex-shrink:0}
-.nav-logo-text{font-size:17px;font-weight:800;letter-spacing:-.3px}
-.nav-logo-text span{color:var(--brand)}
-.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{display:block;padding:7px 14px;border-radius:9px;font-size:14px;font-weight:500;color:var(--text2);transition:all .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--bg3)}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff;box-shadow:0 3px 14px rgba(249,115,22,.4);flex-shrink:0}
+.nav-name{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.nav-name span{color:var(--brand)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{display:block;padding:7px 13px;border-radius:var(--rs);font-size:14px;font-weight:500;color:var(--text2);transition:all .18s}
+.nav-links a:hover{color:var(--text);background:var(--bg3)}
 .nav-actions{display:flex;align-items:center;gap:8px}
-.lang-btn{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
-.lang-btn:hover{border-color:var(--brand);color:var(--brand)}
+.nav-icon-btn{background:none;border:none;color:var(--text2);cursor:pointer;font-size:18px;padding:6px;border-radius:var(--rs);transition:all .18s}
+.nav-icon-btn:hover{color:var(--text);background:var(--bg3)}
 .mobile-btn{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;padding:4px}
-.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:99;padding:12px 16px}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:99;padding:12px}
 .mobile-menu.open{display:block}
-.mobile-menu a{display:block;padding:12px 16px;border-radius:10px;color:var(--text2);font-weight:500;transition:all .2s}
+.mobile-menu a{display:block;padding:11px 16px;border-radius:var(--rs);color:var(--text2);font-weight:500;transition:all .18s}
 .mobile-menu a:hover{color:var(--text);background:var(--bg3)}
 
-/* ═══════════════════════ HERO ═══════════════════════ */
-#hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden;padding-top:var(--nav-h);
-}
+/* ── Hero ────────────────────────────────────────── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:var(--nav-h)}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-orb1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,69,0,.08) 0%,transparent 70%);top:-200px;right:-100px;animation:drift 10s ease-in-out infinite}
-.hero-orb2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,150,.05) 0%,transparent 70%);bottom:-100px;left:-50px;animation:drift 14s ease-in-out infinite reverse}
-.hero-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15}
+.hero-orb1{width:600px;height:600px;background:var(--brand);top:-150px;right:-100px;animation:float 10s ease-in-out infinite}
+.hero-orb2{width:400px;height:400px;background:var(--gold);bottom:-100px;left:-80px;animation:float 14s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,15px)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
 .hero-content{position:relative;z-index:1;padding:80px 0 60px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:99px;font-size:13px;font-weight:700;background:rgba(255,69,0,.1);border:1px solid rgba(255,69,0,.2);color:var(--brand);margin-bottom:24px;animation:fadeUp .6s ease both}
-.hero-title{font-size:clamp(36px,5.5vw,68px);font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:22px;animation:fadeUp .6s .1s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:99px;font-size:13px;font-weight:700;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);color:var(--brand);margin-bottom:22px;animation:fadeUp .6s ease both}
+.hero-title{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:20px;animation:fadeUp .6s .1s ease both}
 .hero-title .accent{color:var(--brand)}
 .hero-title .outline{-webkit-text-stroke:2px var(--brand);color:transparent}
-.hero-desc{font-size:18px;color:var(--text2);line-height:1.8;max-width:500px;margin-bottom:36px;animation:fadeUp .6s .2s ease both}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px;animation:fadeUp .6s .3s ease both}
-.hero-stats{display:flex;gap:32px;flex-wrap:wrap;animation:fadeUp .6s .4s ease both}
+.hero-desc{font-size:18px;color:var(--text2);line-height:1.8;max-width:490px;margin-bottom:34px;animation:fadeUp .6s .2s ease both}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:50px;animation:fadeUp .6s .3s ease both}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;animation:fadeUp .6s .4s ease both}
 .h-stat{display:flex;align-items:center;gap:10px}
-.h-stat-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.h-stat-val{font-size:18px;font-weight:900;font-family:'Playfair Display',serif;letter-spacing:-.5px}
+.h-stat-icon{width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.h-stat-val{font-size:18px;font-weight:900;letter-spacing:-.5px}
 .h-stat-lbl{font-size:11px;color:var(--text3)}
-.hero-visual{position:relative;animation:fadeUp .6s .25s ease both}
-.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:var(--shadow)}
-.world-preview{background:var(--bg3);border-radius:12px;height:220px;position:relative;overflow:hidden;margin-bottom:16px;display:flex;align-items:center;justify-content:center}
-.world-dots{position:absolute;inset:0}
-.dot-loc{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(255,69,0,.2),0 0 12px rgba(255,69,0,.4);transform:translate(-50%,-50%);animation:pulse-loc 2.5s ease-in-out infinite}
-.dot-loc:nth-child(2){animation-delay:.4s}.dot-loc:nth-child(3){animation-delay:.8s}.dot-loc:nth-child(4){animation-delay:1.2s}.dot-loc:nth-child(5){animation-delay:1.6s}.dot-loc:nth-child(6){animation-delay:2s}
-@keyframes pulse-loc{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3)}}
-.world-text{font-size:13px;color:var(--text3);position:relative;z-index:1}
-.market-pills{display:flex;flex-wrap:wrap;gap:8px}
-.market-pill{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:99px;font-size:12px;font-weight:600}
+.hero-visual{position:relative;z-index:1;animation:fadeUp .6s .25s ease both}
+.map-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.map-inner{background:var(--bg3);border-radius:12px;height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.map-text{font-size:13px;color:var(--text3);position:relative;z-index:1}
+.map-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(249,115,22,.2),0 0 10px rgba(249,115,22,.35);transform:translate(-50%,-50%);animation:pulse-dot 2.5s ease-in-out infinite}
+.map-dot:nth-child(2){animation-delay:.5s}.map-dot:nth-child(3){animation-delay:1s}.map-dot:nth-child(4){animation-delay:1.5s}.map-dot:nth-child(5){animation-delay:2s}.map-dot:nth-child(6){animation-delay:.25s}
+@keyframes pulse-dot{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3)}}
+.market-pills{display:flex;flex-wrap:wrap;gap:7px}
+.m-pill{display:flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:99px;font-size:12px;font-weight:600}
 
-/* ═══════════════════════ TICKER ═══════════════════════ */
-.ticker{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:13px 0;overflow:hidden}
-.ticker-wrap{display:flex;gap:48px;animation:scrollTicker 35s linear infinite;white-space:nowrap}
-.ticker-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--text2);flex-shrink:0}
+/* ── Ticker ──────────────────────────────────────── */
+.ticker{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;overflow:hidden}
+.ticker-track{display:flex;gap:40px;animation:scroll-ticker 35s linear infinite;white-space:nowrap}
+.ticker-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text2);flex-shrink:0}
 .ticker-item span{color:var(--brand)}
-.ticker-sep{color:var(--text3);margin:0 4px}
-@keyframes scrollTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scroll-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ═══════════════════════ CARDS ═══════════════════════ */
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s,transform .2s}
+/* ── Achievements ────────────────────────────────── */
+.ach-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.ach{text-align:center;padding:32px 16px;border-left:1px solid var(--border);position:relative}
+.ach:last-child{border-left:none}
+.ach::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--brand),transparent);opacity:0;transition:opacity .3s}
+.ach:hover::before{opacity:1}
+.ach-icon{font-size:30px;margin-bottom:10px}
+.ach-val{font-size:36px;font-weight:900;color:var(--brand);letter-spacing:-1px;line-height:1}
+.ach-lbl{font-size:14px;font-weight:600;margin:8px 0 5px}
+.ach-desc{font-size:12px;color:var(--text2)}
+
+/* ── Cards ───────────────────────────────────────── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:all .2s}
 .card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.card-pad{padding:24px 26px}
-.service-card{padding:28px;position:relative;overflow:hidden}
+.service-card{padding:26px;position:relative;overflow:hidden}
 .service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--brand);transform:scaleX(0);transform-origin:right;transition:transform .4s ease}
 .service-card:hover::after{transform:scaleX(1);transform-origin:left}
-.s-icon{width:52px;height:52px;border-radius:14px;background:rgba(255,69,0,.1);border:1px solid rgba(255,69,0,.2);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
-.s-title{font-size:17px;font-weight:700;margin-bottom:10px}
-.s-desc{font-size:14px;color:var(--text2);line-height:1.7}
-.market-card{padding:22px;display:flex;align-items:flex-start;gap:14px;cursor:default}
-.m-flag{font-size:34px;flex-shrink:0;line-height:1}
+.s-icon{width:48px;height:48px;border-radius:12px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.market-card{padding:20px;display:flex;gap:12px;align-items:flex-start}
+.m-flag{font-size:30px;flex-shrink:0;line-height:1}
 .m-country{font-size:15px;font-weight:700;margin-bottom:3px}
-.m-city{font-size:12px;color:var(--brand);font-weight:600;margin-bottom:6px}
+.m-city{font-size:12px;color:var(--brand);font-weight:600;margin-bottom:5px}
 .m-desc{font-size:13px;color:var(--text2);line-height:1.5}
-.achievement{text-align:center;padding:36px 24px;border-left:1px solid var(--border);position:relative;overflow:hidden}
-.achievement:last-child{border-left:none}
-.achievement::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--brand),transparent);opacity:0;transition:opacity .3s}
-.achievement:hover::before{opacity:1}
-.ach-icon{font-size:36px;margin-bottom:14px}
-.ach-val{font-size:42px;font-weight:900;font-family:var(--serif);letter-spacing:-2px;color:var(--brand);line-height:1}
-.ach-lbl{font-size:15px;font-weight:600;margin:10px 0 6px}
-.ach-desc{font-size:13px;color:var(--text2)}
 
-/* ═══════════════════════ ACHIEVEMENTS STRIP ═══════════════════════ */
-.achievements-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
-
-/* ═══════════════════════ ABOUT ═══════════════════════ */
-.about-feature{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
-.af-icon{width:40px;height:40px;border-radius:11px;background:rgba(255,69,0,.1);border:1px solid rgba(255,69,0,.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
-.af-title{font-size:15px;font-weight:700;margin-bottom:4px}
-.af-desc{font-size:13.5px;color:var(--text2);line-height:1.6}
-
-/* ═══════════════════════ FORM ═══════════════════════ */
-.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:36px;box-shadow:var(--shadow)}
-.form-title{font-size:20px;font-weight:800;margin-bottom:5px}
-.form-sub{font-size:13.5px;color:var(--text2);margin-bottom:26px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-field{display:flex;flex-direction:column;gap:6px}
-.form-field.full{grid-column:1/-1}
-.label{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px}
-.req{color:var(--brand)}
-.input,.select,.textarea{
-  background:var(--bg3);border:1.5px solid var(--border);
-  border-radius:10px;padding:11px 14px;font-size:14px;
-  color:var(--text);font-family:var(--sans);outline:none;
-  transition:border-color .2s,box-shadow .2s;width:100%;
-}
-.input::placeholder,.textarea::placeholder{color:var(--text3)}
-.input:focus,.select:focus,.textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(255,69,0,.08)}
-.input.err,.select.err{border-color:#e53e3e}
-.err-msg{font-size:11.5px;color:#fc8181;margin-top:3px;display:none}
-.err-msg.show{display:block}
-.textarea{resize:vertical;min-height:90px}
-.select{cursor:pointer;appearance:none}
-.submit-btn{width:100%;background:var(--brand);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--sans);margin-top:6px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.submit-btn:hover{background:var(--brand-h);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,69,0,.45)}
-.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.success-box{display:none;text-align:center;padding:32px 20px}
+/* ── Form ────────────────────────────────────────── */
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-full{grid-column:1/-1}
+.f-group{display:flex;flex-direction:column;gap:5px}
+.f-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px}
+.f-req{color:var(--brand)}
+.f-input{background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rs);padding:10px 13px;font-size:14px;color:var(--text);font-family:var(--sans);outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.f-input::placeholder{color:var(--text3)}
+.f-input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(249,115,22,.08)}
+.f-input.err{border-color:#ef4444}
+.f-err{font-size:11.5px;color:#f87171;display:none}
+.f-err.show{display:block}
+.f-textarea{resize:vertical;min-height:80px}
+.f-submit{width:100%;background:var(--brand);color:#fff;border:none;border-radius:var(--rs);padding:13px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--sans);margin-top:4px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.f-submit:hover{background:var(--brand-h);transform:translateY(-1px);box-shadow:0 5px 18px rgba(249,115,22,.4)}
+.f-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.success-box{display:none;text-align:center;padding:28px 16px}
 .success-box.show{display:block}
-.success-icon{font-size:56px;margin-bottom:16px}
-.success-title{font-size:20px;font-weight:800;margin-bottom:8px}
-.success-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:20px}
-.success-id{font-family:monospace;font-size:14px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--brand)}
+.success-icon{font-size:50px;margin-bottom:14px}
 
-/* ═══════════════════════ CONTACT ═══════════════════════ */
-.contact-card{padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
-.c-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .3s}
-.contact-card:hover .c-icon-wrap{transform:scale(1.1)}
-.c-label{font-size:14px;font-weight:700}
-.c-val{font-size:13px;color:var(--text2)}
+/* ── About ───────────────────────────────────────── */
+.af{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px}
+.af-icon{width:38px;height:38px;border-radius:10px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:1px}
 
-/* ═══════════════════════ FOOTER ═══════════════════════ */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 28px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
-.footer-brand-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-top:14px;max-width:270px}
-.footer-col-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2);margin-bottom:16px}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-links a{font-size:14px;color:var(--text2);transition:color .2s}
+/* ── Contact ─────────────────────────────────────── */
+.contact-card{padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.c-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .25s}
+.card:hover .c-icon{transform:scale(1.1)}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.footer-col-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2);margin-bottom:14px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-size:14px;color:var(--text2);transition:color .18s}
 .footer-links a:hover{color:var(--brand)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .footer-copy{font-size:13px;color:var(--text3)}
-.footer-note{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px}
 
-/* ═══════════════════════ TOAST ═══════════════════════ */
-.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
-.toast{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:12px 20px;font-size:14px;font-weight:500;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;animation:toastIn .25s ease;pointer-events:all;max-width:340px}
-.toast.success{border-color:rgba(0,200,150,.3)}.toast.error{border-color:rgba(255,51,85,.3)}.toast.info{border-color:rgba(77,159,255,.25)}
-@keyframes toastIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+/* ── Toast ───────────────────────────────────────── */
+#toast-wrap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.toast{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px;animation:toastIn .25s ease;max-width:340px;pointer-events:all}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* ═══════════════════════ ANIMATIONS ═══════════════════════ */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.reveal{opacity:0;transform:translateY(22px);transition:all .6s ease}
+/* ── Animations ──────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
 .reveal.visible{opacity:1;transform:none}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-/* ═══════════════════════ RESPONSIVE ═══════════════════════ */
-@media(max-width:1024px){
-  .col3,.col4{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .achievements-strip{grid-template-columns:1fr 1fr}
-  .achievement{border-bottom:1px solid var(--border)}
-}
+/* ── Responsive ──────────────────────────────────── */
+@media(max-width:1024px){.col3,.ach-strip{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){
-  .col2,.col3,.col4,.form-grid{grid-template-columns:1fr}
-  .hero-actions{flex-direction:column;align-items:flex-start}
-  .hero-stats{gap:20px}
+  .col2,.form-grid{grid-template-columns:1fr}
+  .col3,.col4,.ach-strip{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
   .hero-visual{display:none}
-  .nav-links,.nav-actions .lang-btn{display:none}
+  .nav-links,.nav-actions .btn{display:none}
   .mobile-btn{display:block}
   .footer-grid{grid-template-columns:1fr}
-  .achievements-strip{grid-template-columns:1fr}
-  .achievement{border-left:none;border-bottom:1px solid var(--border)}
+  .section{padding:56px 0}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════ NAV ═══════════════════════ -->
-<nav id="navbar">
+<!-- ══════════ NAV ══════════ -->
+<nav id="main-nav">
   <div class="wrap nav-inner">
     <a class="nav-logo" href="#hero">
-      <div class="nav-logo-mark">S</div>
-      <div class="nav-logo-text"><span>SPARK</span> Export</div>
+      <div class="nav-mark">S</div>
+      <div class="nav-name"><span>SPARK</span> Export</div>
     </a>
     <ul class="nav-links">
-      <li><a href="#services" id="nav-services">خدماتنا</a></li>
-      <li><a href="#markets" id="nav-markets">أسواقنا</a></li>
-      <li><a href="#about" id="nav-about">عن الشركة</a></li>
-      <li><a href="#contact" id="nav-contact">تواصل</a></li>
-      <li><a href="#request" id="nav-request" style="color:var(--brand);font-weight:700">اطلب خدمة</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#markets">أسواقنا</a></li>
+      <li><a href="#about">عن الشركة</a></li>
+      <li><a href="#contact">تواصل</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
-      <a href="#request" class="btn btn-primary btn-sm" id="nav-cta">اطلب الآن</a>
+      <button class="nav-icon-btn" onclick="toggleTheme()" title="المظهر">🌙</button>
+      <button class="nav-icon-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+      <a href="#request" class="btn btn-brand" style="padding:9px 18px;font-size:13px" id="nav-cta">اطلب خدمة</a>
       <button class="mobile-btn" onclick="toggleMobile()">☰</button>
     </div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#services"  onclick="closeMobile()">خدماتنا</a>
-  <a href="#markets"   onclick="closeMobile()">أسواقنا</a>
-  <a href="#about"     onclick="closeMobile()">عن الشركة</a>
-  <a href="#contact"   onclick="closeMobile()">تواصل</a>
-  <a href="#request"   onclick="closeMobile()" style="color:var(--brand);font-weight:700">اطلب خدمة</a>
+  <a href="#services" onclick="closeMobile()">خدماتنا</a>
+  <a href="#markets"  onclick="closeMobile()">أسواقنا</a>
+  <a href="#about"    onclick="closeMobile()">عن الشركة</a>
+  <a href="#contact"  onclick="closeMobile()">تواصل</a>
+  <a href="#request"  onclick="closeMobile()" style="color:var(--brand);font-weight:700">اطلب خدمة</a>
 </div>
 
-<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<!-- ══════════ HERO ══════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="hero-orb1"></div>
-    <div class="hero-orb2"></div>
-    <div class="hero-grid-overlay"></div>
+    <div class="hero-orb hero-orb1"></div>
+    <div class="hero-orb hero-orb2"></div>
+    <div class="hero-grid"></div>
   </div>
   <div class="wrap">
-    <div class="col2" style="gap:64px">
+    <div class="col2" style="gap:56px">
       <div class="hero-content">
-        <div class="hero-badge">🌍 <span id="h-badge">رائدون في تصدير المنتجات الطازجة</span></div>
-        <h1 class="hero-title" id="h-title">
-          نُوصِل<br/>
-          <span class="accent">أجود المحاصيل</span><br/>
-          <span class="outline">إلى العالم</span>
-        </h1>
-        <p class="hero-desc" id="h-desc">
-          منذ أكثر من 15 عاماً، نصدّر المنتجات الزراعية الطازجة من مصر إلى 6 دول عبر سلسلة تبريد متكاملة وضمان جودة عالمي.
-        </p>
-        <div class="hero-actions">
-          <a href="#request" class="btn btn-primary btn-lg" id="h-cta1">اطلب خدمة الآن →</a>
+        <div class="hero-badge"><span class="chip-dot"></span><span id="h-badge">رائدون في تصدير المنتجات الطازجة</span></div>
+        <h1 class="hero-title" id="h-title">نُوصِل<br/><span class="accent">أجود المحاصيل</span><br/><span class="outline">إلى العالم</span></h1>
+        <p class="hero-desc" id="h-desc">منذ أكثر من 15 عاماً، نصدّر المنتجات الزراعية الطازجة من مصر إلى 6 دول عبر سلسلة تبريد متكاملة وضمان جودة عالمي.</p>
+        <div class="hero-ctas">
+          <a href="#request" class="btn btn-brand btn-lg" id="h-cta1">اطلب خدمة الآن →</a>
           <a href="#about"   class="btn btn-outline btn-lg" id="h-cta2">تعرف علينا</a>
         </div>
         <div class="hero-stats">
-          <div class="h-stat">
-            <div class="h-stat-icon">🚛</div>
-            <div><div class="h-stat-val">50K+</div><div class="h-stat-lbl">طن سنوياً</div></div>
-          </div>
-          <div class="h-stat">
-            <div class="h-stat-icon">🌍</div>
-            <div><div class="h-stat-val">6</div><div class="h-stat-lbl">دول حول العالم</div></div>
-          </div>
-          <div class="h-stat">
-            <div class="h-stat-icon">🏆</div>
-            <div><div class="h-stat-val">15+</div><div class="h-stat-lbl">سنة خبرة</div></div>
-          </div>
+          <div class="h-stat"><div class="h-stat-icon">🚛</div><div><div class="h-stat-val">50K+</div><div class="h-stat-lbl" id="hs1">طن سنوياً</div></div></div>
+          <div class="h-stat"><div class="h-stat-icon">🌍</div><div><div class="h-stat-val">6</div><div class="h-stat-lbl" id="hs2">دول</div></div></div>
+          <div class="h-stat"><div class="h-stat-icon">🏆</div><div><div class="h-stat-val">15+</div><div class="h-stat-lbl" id="hs3">سنة خبرة</div></div></div>
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-card">
-          <div class="world-preview">
-            <div class="world-dots">
-              <div class="dot-loc" style="left:55%;top:52%"  title="Dubai"></div>
-              <div class="dot-loc" style="left:60%;top:50%"  title="Riyadh"></div>
-              <div class="dot-loc" style="left:44%;top:36%"  title="Amsterdam"></div>
-              <div class="dot-loc" style="left:47%;top:34%"  title="Munich"></div>
-              <div class="dot-loc" style="left:41%;top:32%"  title="London"></div>
-              <div class="dot-loc" style="left:57%;top:48%"  title="Kuwait"></div>
-            </div>
-            <div class="world-text">🗺️ شبكة توزيع عالمية</div>
+        <div class="map-card">
+          <div class="map-inner">
+            <div class="map-dot" style="left:57%;top:52%"></div>
+            <div class="map-dot" style="left:61%;top:50%"></div>
+            <div class="map-dot" style="left:44%;top:36%"></div>
+            <div class="map-dot" style="left:47%;top:34%"></div>
+            <div class="map-dot" style="left:41%;top:32%"></div>
+            <div class="map-dot" style="left:58%;top:48%"></div>
+            <div class="map-text">🗺️ شبكتنا العالمية</div>
           </div>
           <div class="market-pills">
-            <div class="market-pill">🇦🇪 دبي</div>
-            <div class="market-pill">🇸🇦 الرياض</div>
-            <div class="market-pill">🇳🇱 أمستردام</div>
-            <div class="market-pill">🇩🇪 ميونخ</div>
-            <div class="market-pill">🇬🇧 لندن</div>
-            <div class="market-pill">🇰🇼 الكويت</div>
+            <div class="m-pill">🇦🇪 دبي</div><div class="m-pill">🇸🇦 الرياض</div>
+            <div class="m-pill">🇳🇱 أمستردام</div><div class="m-pill">🇩🇪 ميونخ</div>
+            <div class="m-pill">🇬🇧 لندن</div><div class="m-pill">🇰🇼 الكويت</div>
           </div>
         </div>
       </div>
@@ -351,256 +279,152 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- TICKER -->
+<!-- Ticker -->
 <div class="ticker">
-  <div class="ticker-wrap" id="ticker">
-    <div class="ticker-item">🍓 فراولة مصرية <span>موسم 2026</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🍊 برتقال مالتي <span>جودة A+</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🥭 مانجو فيونيكي <span>موسم الصيف</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🫑 فلفل ألوان <span>طازج يومياً</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">✈️ شحن إلى <span>6 دول</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🏆 GlobalGAP Certified <span>2025</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🍓 فراولة مصرية <span>موسم 2026</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🍊 برتقال مالتي <span>جودة A+</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🥭 مانجو فيونيكي <span>موسم الصيف</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🫑 فلفل ألوان <span>طازج يومياً</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">✈️ شحن إلى <span>6 دول</span></div><span class="ticker-sep">•</span>
-    <div class="ticker-item">🏆 GlobalGAP Certified <span>2025</span></div><span class="ticker-sep">•</span>
+  <div class="ticker-track">
+    <div class="ticker-item">🍓 فراولة مصرية <span>موسم 2026</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🍊 برتقال مالتي <span>جودة A+</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🥭 مانجو فيونيكي <span>موسم الصيف</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">✈️ شحن إلى <span>6 دول</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🏆 GlobalGAP <span>Certified 2025</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🍓 فراولة مصرية <span>موسم 2026</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🍊 برتقال مالتي <span>جودة A+</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🥭 مانجو فيونيكي <span>موسم الصيف</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">✈️ شحن إلى <span>6 دول</span></div><span style="color:var(--text3)">•</span>
+    <div class="ticker-item">🏆 GlobalGAP <span>Certified 2025</span></div><span style="color:var(--text3)">•</span>
   </div>
 </div>
 
-<!-- ═══════════════════════ ACHIEVEMENTS ═══════════════════════ -->
-<div class="achievements-strip" id="achievements">
-  <div class="achievement reveal">
-    <div class="ach-icon">🚛</div>
-    <div class="ach-val">50K+</div>
-    <div class="ach-lbl" id="a1-lbl">طن مصدَّر سنوياً</div>
-    <div class="ach-desc" id="a1-desc">منتجات طازجة عالية الجودة لأسواق العالم كل عام</div>
-  </div>
-  <div class="achievement reveal reveal-d1">
-    <div class="ach-icon">🌍</div>
-    <div class="ach-val">6</div>
-    <div class="ach-lbl" id="a2-lbl">دول نخدمها</div>
-    <div class="ach-desc" id="a2-desc">شبكة توزيع نشطة في الخليج وأوروبا</div>
-  </div>
-  <div class="achievement reveal reveal-d2">
-    <div class="ach-icon">🏆</div>
-    <div class="ach-val">15+</div>
-    <div class="ach-lbl" id="a3-lbl">سنة تميز</div>
-    <div class="ach-desc" id="a3-desc">خبرة متراكمة في تصدير المنتجات الزراعية المصرية</div>
-  </div>
-  <div class="achievement reveal reveal-d3">
-    <div class="ach-icon">🤝</div>
-    <div class="ach-val">120+</div>
-    <div class="ach-lbl" id="a4-lbl">شريك موردين</div>
-    <div class="ach-desc" id="a4-desc">مزارعون مصريون موثوقون يوفرون أجود المحاصيل</div>
-  </div>
+<!-- ══════════ ACHIEVEMENTS ══════════ -->
+<div class="ach-strip">
+  <div class="ach reveal"><div class="ach-icon">🚛</div><div class="ach-val">50K+</div><div class="ach-lbl" id="a1l">طن مصدَّر</div><div class="ach-desc" id="a1d">سنوياً لأسواق العالم</div></div>
+  <div class="ach reveal d1"><div class="ach-icon">🌍</div><div class="ach-val">6</div><div class="ach-lbl" id="a2l">دول</div><div class="ach-desc" id="a2d">خليج وأوروبا</div></div>
+  <div class="ach reveal d2"><div class="ach-icon">🏆</div><div class="ach-val">15+</div><div class="ach-lbl" id="a3l">سنة تميز</div><div class="ach-desc" id="a3d">خبرة في التصدير</div></div>
+  <div class="ach reveal d3"><div class="ach-icon">🤝</div><div class="ach-val">120+</div><div class="ach-lbl" id="a4l">شريك</div><div class="ach-desc" id="a4d">موردون موثوقون</div></div>
 </div>
 
-<!-- ═══════════════════════ SERVICES ═══════════════════════ -->
+<!-- ══════════ SERVICES ══════════ -->
 <section class="section" id="services">
   <div class="wrap">
-    <div class="center" style="margin-bottom:48px">
-      <div class="chip" id="s-chip">خدماتنا</div>
+    <div class="center" style="margin-bottom:44px">
+      <div class="chip"><span class="chip-dot"></span><span id="s-chip">خدماتنا</span></div>
       <h2 class="sec-title" id="s-title">حلول متكاملة للتصدير</h2>
-      <p class="sec-sub" id="s-sub">من حقل المزارع المصري حتى مستودع العميل في أي مكان في العالم.</p>
+      <p class="sec-sub" id="s-sub">من الحقل المصري حتى مستودع العميل في أي مكان بالعالم.</p>
     </div>
     <div class="col3">
-      <div class="card service-card reveal">
-        <div class="s-icon">🍊</div>
-        <div class="s-title" id="sv1-t">تصدير المنتجات الطازجة</div>
-        <div class="s-desc" id="sv1-d">فاكهة وخضروات مميزة بسلسلة تبريد متكاملة من المزرعة للوجهة مع ضمان الجودة في كل مرحلة.</div>
-      </div>
-      <div class="card service-card reveal reveal-d1">
-        <div class="s-icon">🚛</div>
-        <div class="s-title" id="sv2-t">لوجستيات متكاملة</div>
-        <div class="s-desc" id="sv2-d">خدمة شاملة من الشراء للمعالجة للشحن الدولي بحراً وجواً حتى التسليم في الوجهة.</div>
-      </div>
-      <div class="card service-card reveal reveal-d2">
-        <div class="s-icon">📦</div>
-        <div class="s-title" id="sv3-t">تصنيع وتغليف</div>
-        <div class="s-desc" id="sv3-d">منشآت تصنيع حديثة تلبي أعلى المعايير الدولية للجودة والسلامة الغذائية العالمية.</div>
-      </div>
-      <div class="card service-card reveal">
-        <div class="s-icon">✅</div>
-        <div class="s-title" id="sv4-t">ضبط الجودة</div>
-        <div class="s-desc" id="sv4-d">فحوصات صارمة في كل مرحلة — من استلام المورد حتى وصول الشحنة للعميل.</div>
-      </div>
-      <div class="card service-card reveal reveal-d1">
-        <div class="s-icon">🎯</div>
-        <div class="s-title" id="sv5-t">طلبات مخصصة</div>
-        <div class="s-desc" id="sv5-d">حلول تصدير مصممة خصيصاً لمتطلباتك من المواصفات والكميات والجداول الزمنية.</div>
-      </div>
-      <div class="card service-card reveal reveal-d2">
-        <div class="s-icon">🌡️</div>
-        <div class="s-title" id="sv6-t">سلسلة التبريد</div>
-        <div class="s-desc" id="sv6-d">ريفرات مبردة حديثة تحافظ على جودة المنتجات طوال رحلة الشحن بدرجات حرارة مثالية.</div>
-      </div>
+      <div class="card service-card reveal"><div class="s-icon">🍊</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv1t">تصدير المنتجات الطازجة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv1d">فاكهة وخضروات بسلسلة تبريد متكاملة.</p></div>
+      <div class="card service-card reveal d1"><div class="s-icon">🚛</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv2t">لوجستيات متكاملة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv2d">من الشراء للشحن حتى التسليم.</p></div>
+      <div class="card service-card reveal d2"><div class="s-icon">📦</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv3t">تصنيع وتغليف</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv3d">وفق أعلى المعايير الدولية.</p></div>
+      <div class="card service-card reveal"><div class="s-icon">✅</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv4t">ضبط الجودة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv4d">فحوصات في كل مرحلة.</p></div>
+      <div class="card service-card reveal d1"><div class="s-icon">🎯</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv5t">طلبات مخصصة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv5d">حلول لمتطلباتك الخاصة.</p></div>
+      <div class="card service-card reveal d2"><div class="s-icon">🌡️</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv6t">سلسلة التبريد</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv6d">حفاظ على الجودة طوال الرحلة.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ MARKETS ═══════════════════════ -->
+<!-- ══════════ MARKETS ══════════ -->
 <section class="section" id="markets" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px">
-      <div>
-        <div class="chip" id="m-chip">أسواقنا</div>
-        <h2 class="sec-title" id="m-title">حضور عالمي متنامٍ</h2>
-        <p class="sec-sub" id="m-sub">شبكة توزيع نشطة تغطي الخليج العربي وأوروبا.</p>
-      </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:36px">
+      <div><div class="chip"><span class="chip-dot"></span><span id="m-chip">أسواقنا</span></div><h2 class="sec-title" id="m-title">حضور عالمي</h2></div>
       <a href="#request" class="btn btn-outline" id="m-btn">انضم إلى شبكتنا ←</a>
     </div>
     <div class="col3">
-      <div class="card market-card reveal">
-        <div class="m-flag">🇦🇪</div>
-        <div><div class="m-country">الإمارات العربية المتحدة</div><div class="m-city">دبي</div><div class="m-desc">محطة التوزيع الرئيسية في الخليج — أكبر مركز لمنتجاتنا في المنطقة</div></div>
-      </div>
-      <div class="card market-card reveal reveal-d1">
-        <div class="m-flag">🇸🇦</div>
-        <div><div class="m-country">المملكة العربية السعودية</div><div class="m-city">الرياض</div><div class="m-desc">أكبر سوق للمنتجات المصرية في المنطقة بحجم استيراد كبير</div></div>
-      </div>
-      <div class="card market-card reveal reveal-d2">
-        <div class="m-flag">🇳🇱</div>
-        <div><div class="m-country">هولندا</div><div class="m-city">أمستردام</div><div class="m-desc">بوابة أوروبا — توزيع لـ 12 دولة أوروبية عبر ميناء روتردام</div></div>
-      </div>
-      <div class="card market-card reveal">
-        <div class="m-flag">🇩🇪</div>
-        <div><div class="m-country">ألمانيا</div><div class="m-city">ميونخ</div><div class="m-desc">شريك استراتيجي في السوق الأوروبي الكبير للمنتجات الفاخرة</div></div>
-      </div>
-      <div class="card market-card reveal reveal-d1">
-        <div class="m-flag">🇬🇧</div>
-        <div><div class="m-country">المملكة المتحدة</div><div class="m-city">لندن</div><div class="m-desc">تصدير المنتجات الفاخرة للسوق البريطاني المتميز</div></div>
-      </div>
-      <div class="card market-card reveal reveal-d2">
-        <div class="m-flag">🇰🇼</div>
-        <div><div class="m-country">الكويت</div><div class="m-city">الكويت</div><div class="m-desc">توزيع متخصص في الفاكهة الطازجة للسوق الكويتي</div></div>
-      </div>
+      <div class="card market-card reveal"><div class="m-flag">🇦🇪</div><div><div class="m-country">الإمارات</div><div class="m-city">دبي</div><div class="m-desc">محطة التوزيع الرئيسية في الخليج</div></div></div>
+      <div class="card market-card reveal d1"><div class="m-flag">🇸🇦</div><div><div class="m-country">السعودية</div><div class="m-city">الرياض</div><div class="m-desc">أكبر سوق للمنتجات المصرية</div></div></div>
+      <div class="card market-card reveal d2"><div class="m-flag">🇳🇱</div><div><div class="m-country">هولندا</div><div class="m-city">أمستردام</div><div class="m-desc">بوابة أوروبا — 12 دولة</div></div></div>
+      <div class="card market-card reveal"><div class="m-flag">🇩🇪</div><div><div class="m-country">ألمانيا</div><div class="m-city">ميونخ</div><div class="m-desc">شريك استراتيجي أوروبي</div></div></div>
+      <div class="card market-card reveal d1"><div class="m-flag">🇬🇧</div><div><div class="m-country">بريطانيا</div><div class="m-city">لندن</div><div class="m-desc">تصدير المنتجات الفاخرة</div></div></div>
+      <div class="card market-card reveal d2"><div class="m-flag">🇰🇼</div><div><div class="m-country">الكويت</div><div class="m-city">الكويت</div><div class="m-desc">توزيع الفاكهة الطازجة</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+<!-- ══════════ ABOUT ══════════ -->
 <section class="section" id="about">
   <div class="wrap">
-    <div class="col2" style="gap:64px">
+    <div class="col2" style="gap:56px">
       <div class="reveal">
-        <div class="chip" id="ab-chip">عن الشركة</div>
+        <div class="chip"><span class="chip-dot"></span><span id="ab-chip">عن الشركة</span></div>
         <h2 class="sec-title" id="ab-title">ربط مصر بأسواق العالم</h2>
-        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:28px" id="ab-desc">
-          SPARK للتصدير والتوزيع — شركة رائدة في تصدير المنتجات الزراعية الطازجة من مصر إلى أسواق الخليج وأوروبا. نجمع بين الخبرة الزراعية المصرية العريقة ومعايير الجودة الدولية.
-        </p>
-        <div class="about-feature">
-          <div class="af-icon">🎯</div>
-          <div><div class="af-title" id="ab-f1t">رؤيتنا</div><div class="af-desc" id="ab-f1d">أن نكون الشريك الأول للمستوردين في منطقة الشرق الأوسط وأوروبا لتوريد المنتجات الزراعية المصرية عالية الجودة.</div></div>
-        </div>
-        <div class="about-feature">
-          <div class="af-icon">🌱</div>
-          <div><div class="af-title" id="ab-f2t">رسالتنا</div><div class="af-desc" id="ab-f2d">توصيل أجود المحاصيل المصرية الطازجة إلى العالم مع الحفاظ على معايير الجودة والسلامة الغذائية الدولية في كل شحنة.</div></div>
-        </div>
-        <div class="about-feature">
-          <div class="af-icon">⚡</div>
-          <div><div class="af-title" id="ab-f3t">ميزتنا التنافسية</div><div class="af-desc" id="ab-f3d">شبكة موردين زراعيين موثوقة + سلسلة تبريد متكاملة + خبرة جمركية ولوجستية تغطي 6 دول مع متابعة لحظية.</div></div>
-        </div>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:24px" id="ab-desc">SPARK للتصدير — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى أسواق الخليج وأوروبا.</p>
+        <div class="af"><div class="af-icon">🎯</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af1t">رؤيتنا</div><div style="font-size:14px;color:var(--text2)" id="af1d">أن نكون الشريك الأول للمستوردين في الشرق الأوسط وأوروبا.</div></div></div>
+        <div class="af"><div class="af-icon">🌱</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af2t">رسالتنا</div><div style="font-size:14px;color:var(--text2)" id="af2d">توصيل أجود المحاصيل المصرية بمعايير جودة عالمية.</div></div></div>
+        <div class="af"><div class="af-icon">⚡</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af3t">ميزتنا</div><div style="font-size:14px;color:var(--text2)" id="af3d">شبكة موردين موثوقة + سلسلة تبريد كاملة + خبرة جمركية.</div></div></div>
       </div>
-      <div class="reveal reveal-d1">
-        <div class="col2" style="gap:14px">
-          <div class="card card-pad" style="background:rgba(255,69,0,.06);border-color:rgba(255,69,0,.2);text-align:center">
-            <div style="font-size:36px;margin-bottom:10px">🌾</div>
-            <div style="font-size:13px;color:var(--text2)" id="ab-p1">مكونات طازجة من أفضل المزارع المصرية يومياً</div>
-          </div>
-          <div class="card card-pad" style="text-align:center">
-            <div style="font-size:36px;margin-bottom:10px">🚛</div>
-            <div style="font-size:13px;color:var(--text2)" id="ab-p2">لوجستيات متكاملة من المزرعة حتى الوجهة</div>
-          </div>
-          <div class="card card-pad" style="text-align:center">
-            <div style="font-size:36px;margin-bottom:10px">🌍</div>
-            <div style="font-size:13px;color:var(--text2)" id="ab-p3">شبكة توزيع في 6 دول حول العالم</div>
-          </div>
-          <div class="card card-pad" style="background:rgba(0,200,150,.06);border-color:rgba(0,200,150,.2);text-align:center">
-            <div style="font-size:36px;margin-bottom:10px">🏆</div>
-            <div style="font-size:13px;color:var(--text2)" id="ab-p4">معتمدون بشهادة GlobalGAP الدولية</div>
-          </div>
+      <div class="reveal d1">
+        <div class="col2" style="gap:12px">
+          <div class="card" style="padding:20px;text-align:center;background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.15)"><div style="font-size:30px;margin-bottom:8px">🌾</div><div style="font-size:12px;color:var(--text2)" id="ab-p1">مكونات طازجة يومياً</div></div>
+          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🚛</div><div style="font-size:12px;color:var(--text2)" id="ab-p2">لوجستيات متكاملة</div></div>
+          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🌍</div><div style="font-size:12px;color:var(--text2)" id="ab-p3">شبكة في 6 دول</div></div>
+          <div class="card" style="padding:20px;text-align:center;background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.15)"><div style="font-size:30px;margin-bottom:8px">🏆</div><div style="font-size:12px;color:var(--text2)" id="ab-p4">GlobalGAP معتمد</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ REQUEST FORM ═══════════════════════ -->
+<!-- ══════════ REQUEST FORM ══════════ -->
 <section class="section" id="request" style="background:var(--bg2);border-top:1px solid var(--border)">
   <div class="wrap">
-    <div class="col2" style="gap:64px;align-items:start">
-      <!-- Info -->
+    <div class="col2" style="gap:56px;align-items:flex-start">
       <div class="reveal">
-        <div class="chip" id="rf-chip">اطلب خدمة</div>
-        <h2 class="sec-title" id="rf-title">ابدأ شراكتك معنا اليوم</h2>
-        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:32px" id="rf-desc">
-          أرسل طلبك وسيتواصل معك فريقنا المتخصص خلال 24-48 ساعة لمناقشة احتياجاتك وتقديم أفضل الحلول.
-        </p>
-        <div style="display:flex;flex-direction:column;gap:20px">
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--brand);flex-shrink:0">1</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px" id="rf-s1t">أرسل طلبك</div><div style="font-size:13px;color:var(--text2)" id="rf-s1d">املأ النموذج بمعلوماتك واحتياجاتك بكل تفاصيلها.</div></div>
+        <div class="chip"><span class="chip-dot"></span><span id="rf-chip">اطلب خدمة</span></div>
+        <h2 class="sec-title" id="rf-title">ابدأ شراكتك معنا</h2>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:28px" id="rf-desc">أرسل طلبك وسيتواصل معك فريقنا خلال 24-48 ساعة.</p>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">1</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st1t">أرسل طلبك</div><div style="font-size:13px;color:var(--text2)" id="st1d">بمعلوماتك واحتياجاتك.</div></div>
           </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--brand);flex-shrink:0">2</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px" id="rf-s2t">نتواصل معك</div><div style="font-size:13px;color:var(--text2)" id="rf-s2d">يتواصل معك خبراؤنا خلال 24-48 ساعة لفهم احتياجاتك.</div></div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">2</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st2t">نتواصل معك</div><div style="font-size:13px;color:var(--text2)" id="st2d">خلال 24-48 ساعة.</div></div>
           </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--brand);flex-shrink:0">3</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px" id="rf-s3t">عرض متكامل</div><div style="font-size:13px;color:var(--text2)" id="rf-s3d">نقدم لك عرضاً مخصصاً بالأسعار والمواصفات.</div></div>
-          </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--brand);flex-shrink:0">4</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px" id="rf-s4t">نبدأ الشحن</div><div style="font-size:13px;color:var(--text2)" id="rf-s4d">بعد الموافقة، نتولى كل شيء من المزرعة حتى وجهتك.</div></div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">3</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st3t">نبدأ الشحن</div><div style="font-size:13px;color:var(--text2)" id="st3d">عرض مخصص ثم تنفيذ.</div></div>
           </div>
         </div>
       </div>
-
-      <!-- Form -->
-      <div class="reveal reveal-d1">
+      <div class="reveal d1">
         <div class="form-card">
           <div id="form-body">
-            <div class="form-title" id="rf-form-title">أرسل طلبك</div>
-            <div class="form-sub" id="rf-form-sub">الحقول المعلّمة بـ * مطلوبة</div>
-            <form id="request-form" novalidate>
+            <div style="font-size:19px;font-weight:800;margin-bottom:4px" id="rf-ftitle">أرسل طلبك</div>
+            <div style="font-size:13px;color:var(--text2);margin-bottom:22px" id="rf-fsub">الحقول المعلّمة بـ * مطلوبة</div>
+            <form id="req-form" novalidate>
               <div class="form-grid">
-                <div class="form-field">
-                  <label class="label" id="lbl-name">الاسم <span class="req">*</span></label>
-                  <input class="input" id="f-name" type="text" placeholder="أحمد محمد" autocomplete="name"/>
-                  <div class="err-msg" id="e-name">الاسم مطلوب (حرفان على الأقل)</div>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-name">الاسم <span class="f-req">*</span></label>
+                  <input class="f-input" id="f-name" autocomplete="name" placeholder="أحمد محمد"/>
+                  <div class="f-err" id="e-name">الاسم مطلوب</div>
                 </div>
-                <div class="form-field">
-                  <label class="label" id="lbl-company">الشركة</label>
-                  <input class="input" id="f-company" type="text" placeholder="اسم الشركة"/>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-company">الشركة</label>
+                  <input class="f-input" id="f-company" placeholder="اسم الشركة"/>
                 </div>
-                <div class="form-field">
-                  <label class="label" id="lbl-phone">الهاتف <span class="req">*</span></label>
-                  <input class="input" id="f-phone" type="tel" placeholder="+971 50 123 4567" dir="ltr" autocomplete="tel"/>
-                  <div class="err-msg" id="e-phone">رقم هاتف صحيح مطلوب</div>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-phone">الهاتف <span class="f-req">*</span></label>
+                  <input class="f-input" id="f-phone" type="tel" dir="ltr" placeholder="+971 50 123 4567" autocomplete="tel"/>
+                  <div class="f-err" id="e-phone">رقم هاتف صحيح مطلوب</div>
                 </div>
-                <div class="form-field">
-                  <label class="label" id="lbl-country">الدولة</label>
-                  <select class="select" id="f-country">
-                    <option value="">— اختر الدولة —</option>
-                    <option>الإمارات العربية المتحدة</option>
-                    <option>المملكة العربية السعودية</option>
-                    <option>الكويت</option>
-                    <option>قطر</option>
-                    <option>البحرين</option>
-                    <option>عُمان</option>
-                    <option>هولندا</option>
-                    <option>ألمانيا</option>
-                    <option>المملكة المتحدة</option>
-                    <option>فرنسا</option>
-                    <option>دولة أخرى</option>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-email">البريد الإلكتروني</label>
+                  <input class="f-input" id="f-email" type="email" dir="ltr" placeholder="email@company.com"/>
+                </div>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-country">الدولة</label>
+                  <select class="f-input" id="f-country" style="appearance:none">
+                    <option value="">— اختر —</option>
+                    <option>الإمارات العربية المتحدة</option><option>المملكة العربية السعودية</option>
+                    <option>الكويت</option><option>قطر</option><option>البحرين</option><option>عُمان</option>
+                    <option>هولندا</option><option>ألمانيا</option><option>المملكة المتحدة</option><option>فرنسا</option><option>دولة أخرى</option>
                   </select>
                 </div>
-                <div class="form-field full">
-                  <label class="label" id="lbl-service">نوع الخدمة <span class="req">*</span></label>
-                  <select class="select" id="f-service">
-                    <option value="">— اختر الخدمة —</option>
+                <div class="f-group">
+                  <label class="f-label" id="lbl-service">الخدمة <span class="f-req">*</span></label>
+                  <select class="f-input" id="f-service" style="appearance:none">
+                    <option value="">— اختر —</option>
                     <option value="fresh_produce_export">تصدير منتجات طازجة</option>
                     <option value="full_service_logistics">لوجستيات متكاملة</option>
                     <option value="processing_packaging">تصنيع وتغليف</option>
@@ -608,28 +432,26 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 2
                     <option value="custom_order">طلب مخصص</option>
                     <option value="other">أخرى</option>
                   </select>
-                  <div class="err-msg" id="e-service">يرجى اختيار نوع الخدمة</div>
+                  <div class="f-err" id="e-service">اختر نوع الخدمة</div>
                 </div>
-                <div class="form-field full">
-                  <label class="label" id="lbl-desc">تفاصيل الطلب</label>
-                  <textarea class="textarea" id="f-desc" placeholder="اذكر المنتجات والكميات والتواريخ..."></textarea>
-                  <div style="font-size:11px;color:var(--text3);margin-top:4px"><span id="char-cnt">0</span>/1000</div>
+                <div class="f-group form-full">
+                  <label class="f-label" id="lbl-desc">تفاصيل الطلب</label>
+                  <textarea class="f-input f-textarea" id="f-desc" placeholder="اذكر المنتجات والكميات والتواريخ..."></textarea>
+                  <div style="font-size:11px;color:var(--text3);margin-top:3px"><span id="cc">0</span>/1000</div>
                 </div>
               </div>
-              <button type="submit" class="submit-btn" id="submit-btn">
-                <span id="btn-txt">إرسال الطلب</span>
-                <span id="btn-ico">→</span>
+              <button type="submit" class="f-submit" id="f-btn">
+                <span id="f-btn-txt">إرسال الطلب</span><span id="f-btn-ico">→</span>
               </button>
-              <div class="err-msg" id="form-err" style="margin-top:10px;font-size:13px"></div>
+              <div class="f-err" id="f-global-err" style="margin-top:10px;font-size:13px"></div>
             </form>
           </div>
-
           <div class="success-box" id="success-box">
             <div class="success-icon">✅</div>
-            <div class="success-title" id="suc-title">تم استلام طلبك بنجاح!</div>
-            <div class="success-desc" id="suc-desc">سيتواصل معك فريقنا المتخصص خلال 24-48 ساعة.</div>
-            <div class="success-id" id="suc-id"></div>
-            <button onclick="resetForm()" class="btn btn-outline" style="margin-top:16px;width:100%;justify-content:center" id="suc-btn">إرسال طلب آخر</button>
+            <div style="font-size:20px;font-weight:800;margin-bottom:8px" id="suc-title">تم استلام طلبك!</div>
+            <div style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px" id="suc-desc">سيتواصل معك فريقنا خلال 24-48 ساعة.</div>
+            <div id="suc-ref" style="font-family:monospace;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--brand);font-size:14px;margin-bottom:16px"></div>
+            <button onclick="resetForm()" class="btn btn-outline" style="width:100%;justify-content:center" id="suc-btn">إرسال طلب آخر</button>
           </div>
         </div>
       </div>
@@ -637,289 +459,226 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 0 2
   </div>
 </section>
 
-<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+<!-- ══════════ CONTACT ══════════ -->
 <section class="section-sm" id="contact">
   <div class="wrap">
-    <div class="center" style="margin-bottom:36px">
-      <div class="chip" id="ct-chip">تواصل معنا</div>
+    <div class="center" style="margin-bottom:32px">
+      <div class="chip"><span class="chip-dot"></span><span id="ct-chip">تواصل</span></div>
       <h2 class="sec-title" id="ct-title">نحن هنا لخدمتك</h2>
     </div>
     <div class="col4">
       <a href="tel:+201001234567" class="card contact-card" style="text-decoration:none">
-        <div class="c-icon-wrap" style="background:rgba(255,69,0,.12)">📞</div>
-        <div class="c-label" id="ct-phone-lbl">اتصل بنا</div>
-        <div class="c-val">+20 100 123 4567</div>
+        <div class="c-icon" style="background:rgba(249,115,22,.1)">📞</div>
+        <div style="font-size:14px;font-weight:700" id="ct1l">اتصل بنا</div>
+        <div style="font-size:13px;color:var(--text2)">+20 100 123 4567</div>
       </a>
       <a href="https://wa.me/201001234567" target="_blank" class="card contact-card" style="text-decoration:none">
-        <div class="c-icon-wrap" style="background:rgba(0,200,150,.12)">💬</div>
-        <div class="c-label" id="ct-wa-lbl">واتساب</div>
-        <div class="c-val">+20 100 123 4567</div>
+        <div class="c-icon" style="background:rgba(34,197,94,.1)">💬</div>
+        <div style="font-size:14px;font-weight:700">WhatsApp</div>
+        <div style="font-size:13px;color:var(--text2)">+20 100 123 4567</div>
       </a>
       <a href="mailto:info@spark-export.com" class="card contact-card" style="text-decoration:none">
-        <div class="c-icon-wrap" style="background:rgba(77,159,255,.12)">✉️</div>
-        <div class="c-label" id="ct-email-lbl">البريد الإلكتروني</div>
-        <div class="c-val">info@spark-export.com</div>
+        <div class="c-icon" style="background:rgba(59,130,246,.1)">✉️</div>
+        <div style="font-size:14px;font-weight:700" id="ct3l">البريد</div>
+        <div style="font-size:13px;color:var(--text2)">info@spark-export.com</div>
       </a>
       <div class="card contact-card">
-        <div class="c-icon-wrap" style="background:rgba(240,165,0,.12)">📍</div>
-        <div class="c-label" id="ct-addr-lbl">العنوان</div>
-        <div class="c-val" id="ct-addr-val">القاهرة، مصر</div>
+        <div class="c-icon" style="background:rgba(234,179,8,.1)">📍</div>
+        <div style="font-size:14px;font-weight:700" id="ct4l">العنوان</div>
+        <div style="font-size:13px;color:var(--text2)" id="ct4v">القاهرة، مصر</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="nav-logo" style="margin-bottom:14px">
-          <div class="nav-logo-mark">S</div>
-          <div class="nav-logo-text"><span>SPARK</span> Export</div>
-        </div>
-        <p class="footer-brand-desc" id="ft-desc">رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى أسواق الخليج وأوروبا منذ عام 2009.</p>
+        <div class="nav-logo" style="margin-bottom:12px"><div class="nav-mark">S</div><div class="nav-name"><span>SPARK</span> Export</div></div>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;max-width:260px" id="ft-desc">رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم منذ 2009.</p>
       </div>
-      <div>
-        <div class="footer-col-title" id="ft-q-title">روابط سريعة</div>
-        <ul class="footer-links">
-          <li><a href="#services">خدماتنا</a></li>
-          <li><a href="#markets">أسواقنا</a></li>
-          <li><a href="#about">عن الشركة</a></li>
-          <li><a href="#request">اطلب خدمة</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" id="ft-s-title">خدماتنا</div>
-        <ul class="footer-links">
-          <li><a href="#services">تصدير المنتجات</a></li>
-          <li><a href="#services">لوجستيات متكاملة</a></li>
-          <li><a href="#services">تصنيع وتغليف</a></li>
-          <li><a href="#services">ضبط الجودة</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" id="ft-c-title">تواصل</div>
-        <ul class="footer-links">
-          <li><a href="mailto:info@spark-export.com">info@spark-export.com</a></li>
-          <li><a href="tel:+201001234567">+20 100 123 4567</a></li>
-          <li><a href="#contact">القاهرة، مصر</a></li>
-        </ul>
-      </div>
+      <div><div class="footer-col-title">روابط</div><ul class="footer-links"><li><a href="#services">خدماتنا</a></li><li><a href="#markets">أسواقنا</a></li><li><a href="#about">عن الشركة</a></li><li><a href="#request">اطلب خدمة</a></li></ul></div>
+      <div><div class="footer-col-title">الخدمات</div><ul class="footer-links"><li><a href="#services">تصدير المنتجات</a></li><li><a href="#services">لوجستيات</a></li><li><a href="#services">تصنيع</a></li><li><a href="#services">ضبط الجودة</a></li></ul></div>
+      <div><div class="footer-col-title">تواصل</div><ul class="footer-links"><li><a href="mailto:info@spark-export.com">info@spark-export.com</a></li><li><a href="tel:+201001234567">+20 100 123 4567</a></li><li><a href="#contact">القاهرة، مصر</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy" id="ft-copy">© 2026 SPARK Export & Distribution. جميع الحقوق محفوظة.</div>
-      <div class="footer-note">🔒 موقع آمن — بياناتك محمية</div>
+      <div class="footer-copy" id="ft-copy">© 2026 SPARK Export. جميع الحقوق محفوظة.</div>
+      <div style="font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px">🔒 موقع آمن</div>
     </div>
   </div>
 </footer>
 
-<div class="toast-wrap" id="toast-wrap"></div>
+<div id="toast-wrap"></div>
 
-<!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
 <script>
 'use strict';
 
-/* ── CONFIG ─────────────────────────────────────────── */
-const CFG = {
-  SUPABASE_URL: 'https://oaqipciweyhogavywlie.supabase.co',
-  SUPABASE_KEY: 'eyJ...eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcWlwY2l3ZXlob2dhdnl3bGllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NTc5OTIsImV4cCI6MjA5MjAzMzk5Mn0.mP583ojsjwYTmvznhNTVXitkA6UVvOQZwZTcn2fBGuw...',
-  DEMO: false,
-};
+/* ════════════════════════════════════
+   SUPABASE CONFIG — SET THESE
+════════════════════════════════════ */
+const SUPABASE_URL = window.SUPABASE_URL || 'https://vlzulxtxflyhrnszktpm.supabase.co';
+const SUPABASE_KEY = window.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsenVseHR4Zmx5aHJuc3prdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjgxNDQsImV4cCI6MjA5MjEwNDE0NH0.iK7z2Tkbb-ncz-sTyg-myDojqoFEYfrKfCT-nRXfJbQ';
 
-/* ── LANG ────────────────────────────────────────────── */
-let LANG = 'ar';
-const T = {
-  ar: {
-    'h-badge':  'رائدون في تصدير المنتجات الطازجة',
-    'h-title':  'نُوصِل <br/><span style="color:var(--brand)">أجود المحاصيل</span><br/><span style="-webkit-text-stroke:2px var(--brand);color:transparent">إلى العالم</span>',
-    'h-desc':   'منذ أكثر من 15 عاماً، نصدّر المنتجات الزراعية الطازجة من مصر إلى 6 دول عبر سلسلة تبريد متكاملة وضمان جودة عالمي.',
-    'h-cta1':   'اطلب خدمة الآن →',
-    'h-cta2':   'تعرف علينا',
-    'nav-cta':  'اطلب الآن',
-    'lang-btn': 'EN',
-    'rf-form-title': 'أرسل طلبك',
-    'rf-form-sub':   'الحقول المعلّمة بـ * مطلوبة',
-    'btn-txt':       'إرسال الطلب',
-    'suc-title':  'تم استلام طلبك بنجاح!',
-    'suc-desc':   'سيتواصل معك فريقنا المتخصص خلال 24-48 ساعة.',
-    'suc-btn':    'إرسال طلب آخر',
-  },
-  en: {
-    'h-badge':  'Leading Fresh Produce Exporters',
-    'h-title':  'Delivering <br/><span style="color:var(--brand)">Premium Produce</span><br/><span style="-webkit-text-stroke:2px var(--brand);color:transparent">Worldwide</span>',
-    'h-desc':   'For over 15 years, we export premium Egyptian fresh produce to 6 countries via integrated cold chain and world-class quality standards.',
-    'h-cta1':   'Request Service →',
-    'h-cta2':   'Learn About Us',
-    'nav-cta':  'Get Started',
-    'lang-btn': 'ع',
-    'rf-form-title': 'Send Your Request',
-    'rf-form-sub':   'Fields marked * are required',
-    'btn-txt':       'Send Request',
-    'suc-title':  'Request Received!',
-    'suc-desc':   'Our team will contact you within 24-48 hours.',
-    'suc-btn':    'Send Another Request',
-  }
-};
-
-function t(key) { return T[LANG]?.[key] ?? T.ar[key] ?? key; }
-
-function toggleLang() {
-  LANG = LANG === 'ar' ? 'en' : 'ar';
-  document.documentElement.lang = LANG;
-  document.documentElement.dir  = LANG === 'ar' ? 'rtl' : 'ltr';
-  applyTranslations();
+let sb = null;
+function initSB() {
+  if (SUPABASE_URL === 'YOUR_SUPABASE_URL') return false;
+  try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); return true; }
+  catch(e) { return false; }
 }
 
-function applyTranslations() {
-  Object.keys(T.ar).forEach(k => {
-    const el = document.getElementById(k);
-    if (el) el.innerHTML = t(k);
-  });
-}
-
-/* ── NAV ──────────────────────────────────────────────── */
-let mobileOpen = false;
-function toggleMobile() {
-  mobileOpen = !mobileOpen;
-  document.getElementById('mobile-menu').classList.toggle('open', mobileOpen);
-}
-function closeMobile() {
-  mobileOpen = false;
-  document.getElementById('mobile-menu').classList.remove('open');
-}
+/* ════════════════════════════════════
+   NAV
+════════════════════════════════════ */
+let mOpen = false;
+function toggleMobile() { mOpen = !mOpen; document.getElementById('mobile-menu').classList.toggle('open', mOpen); }
+function closeMobile()  { mOpen = false; document.getElementById('mobile-menu').classList.remove('open'); }
 window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
 });
-// Active nav link on scroll
-const sections = ['services','markets','about','request','contact'];
-const navLinks  = {};
-sections.forEach(s => { navLinks[s] = document.getElementById('nav-' + s); });
-const sectObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && navLinks[e.target.id]) {
-      Object.values(navLinks).forEach(l => l && l.classList.remove('active'));
-      navLinks[e.target.id].classList.add('active');
-    }
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior:'smooth' }); closeMobile(); }
   });
-}, { threshold: 0.4 });
-sections.forEach(s => { const el = document.getElementById(s); if (el) sectObs.observe(el); });
+});
 
-/* ── SCROLL REVEAL ────────────────────────────────────── */
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }});
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+/* ════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold:.1, rootMargin:'0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ── FORM ─────────────────────────────────────────────── */
+/* ════════════════════════════════════
+   THEME
+════════════════════════════════════ */
+let isLight = false;
+function toggleTheme() {
+  isLight = !isLight;
+  document.body.classList.toggle('light', isLight);
+  document.getElementById('main-nav').classList.toggle('light', isLight);
+  localStorage.setItem('spark-theme', isLight ? 'light' : 'dark');
+}
+
+/* ════════════════════════════════════
+   LANGUAGE
+════════════════════════════════════ */
+let lang = 'ar';
+const T = {
+  ar: { 'h-badge':'رائدون في تصدير المنتجات الطازجة','h-cta1':'اطلب خدمة الآن →','h-cta2':'تعرف علينا','nav-cta':'اطلب خدمة','lang-btn':'EN','rf-ftitle':'أرسل طلبك','f-btn-txt':'إرسال الطلب','suc-title':'تم استلام طلبك!','suc-desc':'سيتواصل معك فريقنا خلال 24-48 ساعة.','suc-btn':'إرسال طلب آخر' },
+  en: { 'h-badge':'Leading Fresh Produce Exporters','h-cta1':'Request Service →','h-cta2':'Learn More','nav-cta':'Get Started','lang-btn':'ع','rf-ftitle':'Send Your Request','f-btn-txt':'Send Request','suc-title':'Request Received!','suc-desc':'Our team will contact you within 24-48 hours.','suc-btn':'Send Another' }
+};
+function toggleLang() {
+  lang = lang === 'ar' ? 'en' : 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+  Object.entries(T[lang]).forEach(([k,v]) => { const el=document.getElementById(k); if(el) el.textContent=v; });
+}
+
+/* ════════════════════════════════════
+   FORM
+════════════════════════════════════ */
 document.getElementById('f-desc').addEventListener('input', function() {
-  document.getElementById('char-cnt').textContent = this.value.length;
+  document.getElementById('cc').textContent = this.value.length;
   if (this.value.length > 1000) this.value = this.value.slice(0,1000);
 });
 
-function showErr(fieldId, errId, show) {
+function showFErr(fieldId, errId, show) {
   document.getElementById(fieldId)?.classList.toggle('err', show);
-  const e = document.getElementById(errId);
-  if (e) e.classList.toggle('show', show);
+  document.getElementById(errId)?.classList.toggle('show', show);
 }
 
 function validateForm() {
   let ok = true;
-  const name    = document.getElementById('f-name').value.trim();
-  const phone   = document.getElementById('f-phone').value.trim();
-  const service = document.getElementById('f-service').value;
-  if (name.length < 2)   { showErr('f-name','e-name',true);    ok = false; } else showErr('f-name','e-name',false);
-  if (phone.length < 7 || !/^[+\d\s()\-]+$/.test(phone)) { showErr('f-phone','e-phone',true); ok = false; } else showErr('f-phone','e-phone',false);
-  if (!service) { showErr('f-service','e-service',true); ok = false; } else showErr('f-service','e-service',false);
+  const name  = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const svc   = document.getElementById('f-service').value;
+  if (name.length < 2)  { showFErr('f-name','e-name',true);    ok=false; } else showFErr('f-name','e-name',false);
+  if (phone.length < 7 || !/^[+\d\s()\-]+$/.test(phone)) { showFErr('f-phone','e-phone',true); ok=false; } else showFErr('f-phone','e-phone',false);
+  if (!svc) { showFErr('f-service','e-service',true); ok=false; } else showFErr('f-service','e-service',false);
   return ok;
 }
 
-document.getElementById('request-form').addEventListener('submit', async e => {
+document.getElementById('req-form').addEventListener('submit', async e => {
   e.preventDefault();
   if (!validateForm()) return;
 
-  const btn = document.getElementById('submit-btn');
-  document.getElementById('btn-txt').textContent = 'جارٍ الإرسال...';
-  document.getElementById('btn-ico').textContent = '⟳';
+  const btn    = document.getElementById('f-btn');
+  const gErr   = document.getElementById('f-global-err');
+  gErr.classList.remove('show');
+  document.getElementById('f-btn-txt').textContent = 'جارٍ الإرسال...';
+  document.getElementById('f-btn-ico').textContent = '⟳';
   btn.disabled = true;
-  document.getElementById('form-err').classList.remove('show');
 
   const payload = {
     name:         document.getElementById('f-name').value.trim(),
-    company:      document.getElementById('f-company').value.trim() || undefined,
+    company:      document.getElementById('f-company').value.trim() || null,
     phone:        document.getElementById('f-phone').value.trim(),
-    country:      document.getElementById('f-country').value || undefined,
+    email:        document.getElementById('f-email').value.trim() || null,
+    country:      document.getElementById('f-country').value || null,
     service_type: document.getElementById('f-service').value,
-    description:  document.getElementById('f-desc').value.trim() || undefined,
+    description:  document.getElementById('f-desc').value.trim() || null,
   };
 
   try {
-    let result;
-    if (CFG.DEMO) {
+    if (!sb) {
+      // Demo mode — simulate success
       await new Promise(r => setTimeout(r, 1200));
-      result = { success: true, data: { id: 'DEMO-' + Math.random().toString(36).substr(2,8).toUpperCase() }};
+      showSuccess('DEMO-' + Date.now().toString(36).toUpperCase().slice(-6));
     } else {
-      const res = await fetch(CFG.API + '/public/customer-requests', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      result = await res.json();
-      if (!res.ok) throw new Error(result.message || 'حدث خطأ');
-    }
-
-    if (result.success) {
-      document.getElementById('form-body').style.display = 'none';
-      document.getElementById('success-box').classList.add('show');
-      document.getElementById('suc-id').textContent = 'رقم طلبك: ' + result.data.id;
-      showToast('✅ تم إرسال طلبك بنجاح', 'success');
-    } else {
-      throw new Error(result.message || 'حدث خطأ');
+      const { data, error } = await sb.from('customer_requests').insert(payload).select('id').single();
+      if (error) throw new Error(error.message);
+      showSuccess(data.id.slice(0,8).toUpperCase());
     }
   } catch(err) {
-    const msg = err instanceof Error ? err.message : 'حدث خطأ. يرجى المحاولة مرة أخرى.';
-    document.getElementById('form-err').textContent = msg;
-    document.getElementById('form-err').classList.add('show');
-    showToast('❌ ' + msg, 'error');
-  } finally {
-    document.getElementById('btn-txt').textContent = t('btn-txt');
-    document.getElementById('btn-ico').textContent = '→';
+    gErr.textContent = '❌ ' + (err.message || 'حدث خطأ. يرجى المحاولة مرة أخرى.');
+    gErr.classList.add('show');
+    document.getElementById('f-btn-txt').textContent = 'إرسال الطلب';
+    document.getElementById('f-btn-ico').textContent = '→';
     btn.disabled = false;
   }
 });
 
+function showSuccess(ref) {
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('success-box').classList.add('show');
+  document.getElementById('suc-ref').textContent = 'رقم طلبك: ' + ref;
+  showToast('✅ تم إرسال طلبك بنجاح!', 'success');
+}
+
 function resetForm() {
-  document.getElementById('request-form').reset();
+  document.getElementById('req-form').reset();
   document.getElementById('form-body').style.display = '';
   document.getElementById('success-box').classList.remove('show');
-  document.getElementById('char-cnt').textContent = '0';
-  ['f-name','f-phone','f-service'].forEach(id => { document.getElementById(id)?.classList.remove('err'); });
-  ['e-name','e-phone','e-service','form-err'].forEach(id => { document.getElementById(id)?.classList.remove('show'); });
+  document.getElementById('cc').textContent = '0';
+  ['f-name','f-phone','f-service'].forEach(id => document.getElementById(id)?.classList.remove('err'));
+  ['e-name','e-phone','e-service','f-global-err'].forEach(id => document.getElementById(id)?.classList.remove('show'));
 }
 
-/* ── TOAST ────────────────────────────────────────────── */
-function showToast(msg, type = 'info') {
-  const icons = { success:'✅', error:'❌', info:'ℹ️' };
-  const wrap  = document.getElementById('toast-wrap');
-  const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
-  toast.innerHTML = '<span>' + (icons[type]||'ℹ️') + '</span><span>' + msg + '</span>';
-  wrap.appendChild(toast);
-  setTimeout(() => {
-    toast.style.transition = 'all .3s';
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateY(10px)';
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
+/* ════════════════════════════════════
+   TOAST
+════════════════════════════════════ */
+function showToast(msg, type='info') {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.getElementById('toast-wrap').appendChild(t);
+  setTimeout(() => { t.style.transition='all .3s'; t.style.opacity='0'; t.style.transform='translateY(10px)'; setTimeout(()=>t.remove(),300); }, 3200);
 }
 
-/* ── SMOOTH SCROLL ────────────────────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    const el = document.querySelector(id);
-    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); closeMobile(); }
-  });
+/* ════════════════════════════════════
+   INIT
+════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Restore theme
+  if (localStorage.getItem('spark-theme') === 'light') {
+    isLight = true;
+    document.body.classList.add('light');
+    document.getElementById('main-nav').classList.add('light');
+  }
+  initSB();
 });
 </script>
 </body>
