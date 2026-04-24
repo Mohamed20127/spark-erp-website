@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="SPARK — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم"/>
-<title>SPARK Export — تصدير المنتجات الزراعية</title>
+<meta name="description" content="الوليد — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم"/>
+<title>الوليد للتصدير والاستيراد</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -26,7 +26,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 a{text-decoration:none;color:inherit}
 button,input,select,textarea{font-family:var(--sans)}
 
-/* ── Layout ─────────────────────────────────────── */
+/* ── Layout ── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
 .section{padding:80px 0}
 .section-sm{padding:56px 0}
@@ -35,7 +35,7 @@ button,input,select,textarea{font-family:var(--sans)}
 .col4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .center{text-align:center}
 
-/* ── Chip ────────────────────────────────────────── */
+/* ── Chip ── */
 .chip{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.3px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.22);color:var(--brand);margin-bottom:14px}
 .chip-dot{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 6px var(--brand);animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
@@ -43,7 +43,7 @@ button,input,select,textarea{font-family:var(--sans)}
 .sec-sub{font-size:16px;color:var(--text2);line-height:1.8;max-width:560px}
 .center .sec-sub{margin:0 auto}
 
-/* ── Buttons ─────────────────────────────────────── */
+/* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:var(--rs);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:var(--sans)}
 .btn-brand{background:var(--brand);color:#fff;box-shadow:0 4px 18px rgba(249,115,22,.35)}
 .btn-brand:hover{background:var(--brand-h);transform:translateY(-2px);box-shadow:0 7px 24px rgba(249,115,22,.45)}
@@ -52,12 +52,8 @@ button,input,select,textarea{font-family:var(--sans)}
 .btn-lg{padding:15px 32px;font-size:15px}
 .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
-/* ── Navbar ──────────────────────────────────────── */
-nav#main-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
-  background:rgba(6,8,15,.88);backdrop-filter:blur(20px) saturate(180%);
-  border-bottom:1px solid var(--border);transition:background .3s;
-}
+/* ── Navbar ── */
+nav#main-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);background:rgba(6,8,15,.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background .3s}
 nav#main-nav.light{background:rgba(248,250,252,.92)}
 nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -77,7 +73,7 @@ nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .mobile-menu a{display:block;padding:11px 16px;border-radius:var(--rs);color:var(--text2);font-weight:500;transition:all .18s}
 .mobile-menu a:hover{color:var(--text);background:var(--bg3)}
 
-/* ── Hero ────────────────────────────────────────── */
+/* ── Hero ── */
 #hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:var(--nav-h)}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15}
@@ -107,14 +103,14 @@ nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .market-pills{display:flex;flex-wrap:wrap;gap:7px}
 .m-pill{display:flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:99px;font-size:12px;font-weight:600}
 
-/* ── Ticker ──────────────────────────────────────── */
+/* ── Ticker ── */
 .ticker{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;overflow:hidden}
 .ticker-track{display:flex;gap:40px;animation:scroll-ticker 35s linear infinite;white-space:nowrap}
 .ticker-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text2);flex-shrink:0}
 .ticker-item span{color:var(--brand)}
 @keyframes scroll-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── Achievements ────────────────────────────────── */
+/* ── Achievements ── */
 .ach-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
 .ach{text-align:center;padding:32px 16px;border-left:1px solid var(--border);position:relative}
 .ach:last-child{border-left:none}
@@ -125,7 +121,7 @@ nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .ach-lbl{font-size:14px;font-weight:600;margin:8px 0 5px}
 .ach-desc{font-size:12px;color:var(--text2)}
 
-/* ── Cards ───────────────────────────────────────── */
+/* ── Cards ── */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:all .2s}
 .card:hover{border-color:var(--border2);transform:translateY(-3px)}
 .service-card{padding:26px;position:relative;overflow:hidden}
@@ -138,7 +134,7 @@ nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .m-city{font-size:12px;color:var(--brand);font-weight:600;margin-bottom:5px}
 .m-desc{font-size:13px;color:var(--text2);line-height:1.5}
 
-/* ── Form ────────────────────────────────────────── */
+/* ── Form ── */
 .form-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-full{grid-column:1/-1}
@@ -159,16 +155,12 @@ nav#main-nav.scrolled{background:rgba(6,8,15,.97)}
 .success-box.show{display:block}
 .success-icon{font-size:50px;margin-bottom:14px}
 
-/* ── About ───────────────────────────────────────── */
-.af{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px}
-.af-icon{width:38px;height:38px;border-radius:10px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:1px}
-
-/* ── Contact ─────────────────────────────────────── */
+/* ── Contact ── */
 .contact-card{padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
 .c-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .25s}
 .card:hover .c-icon{transform:scale(1.1)}
 
-/* ── Footer ──────────────────────────────────────── */
+/* ── Footer ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 24px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
 .footer-col-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2);margin-bottom:14px}
@@ -178,18 +170,22 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
 .footer-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .footer-copy{font-size:13px;color:var(--text3)}
 
-/* ── Toast ───────────────────────────────────────── */
+/* ── Toast ── */
 #toast-wrap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
 .toast{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px;animation:toastIn .25s ease;max-width:340px;pointer-events:all}
 @keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* ── Animations ──────────────────────────────────── */
+/* ── Animations ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
 .reveal.visible{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-/* ── Responsive ──────────────────────────────────── */
+/* ── About ── */
+.af{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px}
+.af-icon{width:38px;height:38px;border-radius:10px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:1px}
+
+/* ── Responsive ── */
 @media(max-width:1024px){.col3,.ach-strip{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){
   .col2,.form-grid{grid-template-columns:1fr}
@@ -205,12 +201,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
+<!-- NAV -->
 <nav id="main-nav">
   <div class="wrap nav-inner">
     <a class="nav-logo" href="#hero">
-      <div class="nav-mark">S</div>
-      <div class="nav-name"><span>SPARK</span> Export</div>
+      <div class="nav-mark">و</div>
+      <div class="nav-name"><span>الوليد</span> للتصدير</div>
     </a>
     <ul class="nav-links">
       <li><a href="#services">خدماتنا</a></li>
@@ -220,8 +216,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
     </ul>
     <div class="nav-actions">
       <button class="nav-icon-btn" onclick="toggleTheme()" title="المظهر">🌙</button>
-      <button class="nav-icon-btn" onclick="toggleLang()" id="lang-btn">EN</button>
-      <a href="#request" class="btn btn-brand" style="padding:9px 18px;font-size:13px" id="nav-cta">اطلب خدمة</a>
+      <a href="#request" class="btn btn-brand" style="padding:9px 18px;font-size:13px">اطلب خدمة</a>
       <button class="mobile-btn" onclick="toggleMobile()">☰</button>
     </div>
   </div>
@@ -234,7 +229,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   <a href="#request"  onclick="closeMobile()" style="color:var(--brand);font-weight:700">اطلب خدمة</a>
 </div>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-orb hero-orb1"></div>
@@ -244,17 +239,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   <div class="wrap">
     <div class="col2" style="gap:56px">
       <div class="hero-content">
-        <div class="hero-badge"><span class="chip-dot"></span><span id="h-badge">رائدون في تصدير المنتجات الطازجة</span></div>
-        <h1 class="hero-title" id="h-title">نُوصِل<br/><span class="accent">أجود المحاصيل</span><br/><span class="outline">إلى العالم</span></h1>
-        <p class="hero-desc" id="h-desc">منذ أكثر من 15 عاماً، نصدّر المنتجات الزراعية الطازجة من مصر إلى 6 دول عبر سلسلة تبريد متكاملة وضمان جودة عالمي.</p>
+        <div class="hero-badge"><span class="chip-dot"></span><span>رائدون في تصدير المنتجات الطازجة</span></div>
+        <h1 class="hero-title">نُوصِل<br/><span class="accent">أجود المحاصيل</span><br/><span class="outline">إلى العالم</span></h1>
+        <p class="hero-desc">منذ أكثر من 15 عاماً، نصدّر المنتجات الزراعية الطازجة من مصر إلى 6 دول عبر سلسلة تبريد متكاملة وضمان جودة عالمي.</p>
         <div class="hero-ctas">
-          <a href="#request" class="btn btn-brand btn-lg" id="h-cta1">اطلب خدمة الآن →</a>
-          <a href="#about"   class="btn btn-outline btn-lg" id="h-cta2">تعرف علينا</a>
+          <a href="#request" class="btn btn-brand btn-lg">اطلب خدمة الآن →</a>
+          <a href="#about"   class="btn btn-outline btn-lg">تعرف علينا</a>
         </div>
         <div class="hero-stats">
-          <div class="h-stat"><div class="h-stat-icon">🚛</div><div><div class="h-stat-val">50K+</div><div class="h-stat-lbl" id="hs1">طن سنوياً</div></div></div>
-          <div class="h-stat"><div class="h-stat-icon">🌍</div><div><div class="h-stat-val">6</div><div class="h-stat-lbl" id="hs2">دول</div></div></div>
-          <div class="h-stat"><div class="h-stat-icon">🏆</div><div><div class="h-stat-val">15+</div><div class="h-stat-lbl" id="hs3">سنة خبرة</div></div></div>
+          <div class="h-stat"><div class="h-stat-icon">🚛</div><div><div class="h-stat-val">50K+</div><div class="h-stat-lbl">طن سنوياً</div></div></div>
+          <div class="h-stat"><div class="h-stat-icon">🌍</div><div><div class="h-stat-val">6</div><div class="h-stat-lbl">دول</div></div></div>
+          <div class="h-stat"><div class="h-stat-icon">🏆</div><div><div class="h-stat-val">15+</div><div class="h-stat-lbl">سنة خبرة</div></div></div>
         </div>
       </div>
       <div class="hero-visual">
@@ -295,39 +290,39 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   </div>
 </div>
 
-<!-- ══════════ ACHIEVEMENTS ══════════ -->
+<!-- ACHIEVEMENTS -->
 <div class="ach-strip">
-  <div class="ach reveal"><div class="ach-icon">🚛</div><div class="ach-val">50K+</div><div class="ach-lbl" id="a1l">طن مصدَّر</div><div class="ach-desc" id="a1d">سنوياً لأسواق العالم</div></div>
-  <div class="ach reveal d1"><div class="ach-icon">🌍</div><div class="ach-val">6</div><div class="ach-lbl" id="a2l">دول</div><div class="ach-desc" id="a2d">خليج وأوروبا</div></div>
-  <div class="ach reveal d2"><div class="ach-icon">🏆</div><div class="ach-val">15+</div><div class="ach-lbl" id="a3l">سنة تميز</div><div class="ach-desc" id="a3d">خبرة في التصدير</div></div>
-  <div class="ach reveal d3"><div class="ach-icon">🤝</div><div class="ach-val">120+</div><div class="ach-lbl" id="a4l">شريك</div><div class="ach-desc" id="a4d">موردون موثوقون</div></div>
+  <div class="ach reveal"><div class="ach-icon">🚛</div><div class="ach-val">50K+</div><div class="ach-lbl">طن مصدَّر</div><div class="ach-desc">سنوياً لأسواق العالم</div></div>
+  <div class="ach reveal d1"><div class="ach-icon">🌍</div><div class="ach-val">6</div><div class="ach-lbl">دول</div><div class="ach-desc">خليج وأوروبا</div></div>
+  <div class="ach reveal d2"><div class="ach-icon">🏆</div><div class="ach-val">15+</div><div class="ach-lbl">سنة تميز</div><div class="ach-desc">خبرة في التصدير</div></div>
+  <div class="ach reveal d3"><div class="ach-icon">🤝</div><div class="ach-val">120+</div><div class="ach-lbl">شريك</div><div class="ach-desc">موردون موثوقون</div></div>
 </div>
 
-<!-- ══════════ SERVICES ══════════ -->
+<!-- SERVICES -->
 <section class="section" id="services">
   <div class="wrap">
     <div class="center" style="margin-bottom:44px">
-      <div class="chip"><span class="chip-dot"></span><span id="s-chip">خدماتنا</span></div>
-      <h2 class="sec-title" id="s-title">حلول متكاملة للتصدير</h2>
-      <p class="sec-sub" id="s-sub">من الحقل المصري حتى مستودع العميل في أي مكان بالعالم.</p>
+      <div class="chip"><span class="chip-dot"></span><span>خدماتنا</span></div>
+      <h2 class="sec-title">حلول متكاملة للتصدير</h2>
+      <p class="sec-sub">من الحقل المصري حتى مستودع العميل في أي مكان بالعالم.</p>
     </div>
     <div class="col3">
-      <div class="card service-card reveal"><div class="s-icon">🍊</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv1t">تصدير المنتجات الطازجة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv1d">فاكهة وخضروات بسلسلة تبريد متكاملة.</p></div>
-      <div class="card service-card reveal d1"><div class="s-icon">🚛</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv2t">لوجستيات متكاملة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv2d">من الشراء للشحن حتى التسليم.</p></div>
-      <div class="card service-card reveal d2"><div class="s-icon">📦</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv3t">تصنيع وتغليف</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv3d">وفق أعلى المعايير الدولية.</p></div>
-      <div class="card service-card reveal"><div class="s-icon">✅</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv4t">ضبط الجودة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv4d">فحوصات في كل مرحلة.</p></div>
-      <div class="card service-card reveal d1"><div class="s-icon">🎯</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv5t">طلبات مخصصة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv5d">حلول لمتطلباتك الخاصة.</p></div>
-      <div class="card service-card reveal d2"><div class="s-icon">🌡️</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px" id="sv6t">سلسلة التبريد</h3><p style="font-size:14px;color:var(--text2);line-height:1.7" id="sv6d">حفاظ على الجودة طوال الرحلة.</p></div>
+      <div class="card service-card reveal"><div class="s-icon">🍊</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">تصدير المنتجات الطازجة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">فاكهة وخضروات بسلسلة تبريد متكاملة.</p></div>
+      <div class="card service-card reveal d1"><div class="s-icon">🚛</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">لوجستيات متكاملة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">من الشراء للشحن حتى التسليم.</p></div>
+      <div class="card service-card reveal d2"><div class="s-icon">📦</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">تصنيع وتغليف</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">وفق أعلى المعايير الدولية.</p></div>
+      <div class="card service-card reveal"><div class="s-icon">✅</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">ضبط الجودة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">فحوصات في كل مرحلة.</p></div>
+      <div class="card service-card reveal d1"><div class="s-icon">🎯</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">طلبات مخصصة</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">حلول لمتطلباتك الخاصة.</p></div>
+      <div class="card service-card reveal d2"><div class="s-icon">🌡️</div><h3 style="font-size:16px;font-weight:700;margin-bottom:8px">سلسلة التبريد</h3><p style="font-size:14px;color:var(--text2);line-height:1.7">حفاظ على الجودة طوال الرحلة.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ MARKETS ══════════ -->
+<!-- MARKETS -->
 <section class="section" id="markets" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:36px">
-      <div><div class="chip"><span class="chip-dot"></span><span id="m-chip">أسواقنا</span></div><h2 class="sec-title" id="m-title">حضور عالمي</h2></div>
-      <a href="#request" class="btn btn-outline" id="m-btn">انضم إلى شبكتنا ←</a>
+      <div><div class="chip"><span class="chip-dot"></span><span>أسواقنا</span></div><h2 class="sec-title">حضور عالمي</h2></div>
+      <a href="#request" class="btn btn-outline">انضم إلى شبكتنا ←</a>
     </div>
     <div class="col3">
       <div class="card market-card reveal"><div class="m-flag">🇦🇪</div><div><div class="m-country">الإمارات</div><div class="m-city">دبي</div><div class="m-desc">محطة التوزيع الرئيسية في الخليج</div></div></div>
@@ -340,80 +335,80 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   </div>
 </section>
 
-<!-- ══════════ ABOUT ══════════ -->
+<!-- ABOUT -->
 <section class="section" id="about">
   <div class="wrap">
     <div class="col2" style="gap:56px">
       <div class="reveal">
-        <div class="chip"><span class="chip-dot"></span><span id="ab-chip">عن الشركة</span></div>
-        <h2 class="sec-title" id="ab-title">ربط مصر بأسواق العالم</h2>
-        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:24px" id="ab-desc">SPARK للتصدير — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى أسواق الخليج وأوروبا.</p>
-        <div class="af"><div class="af-icon">🎯</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af1t">رؤيتنا</div><div style="font-size:14px;color:var(--text2)" id="af1d">أن نكون الشريك الأول للمستوردين في الشرق الأوسط وأوروبا.</div></div></div>
-        <div class="af"><div class="af-icon">🌱</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af2t">رسالتنا</div><div style="font-size:14px;color:var(--text2)" id="af2d">توصيل أجود المحاصيل المصرية بمعايير جودة عالمية.</div></div></div>
-        <div class="af"><div class="af-icon">⚡</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px" id="af3t">ميزتنا</div><div style="font-size:14px;color:var(--text2)" id="af3d">شبكة موردين موثوقة + سلسلة تبريد كاملة + خبرة جمركية.</div></div></div>
+        <div class="chip"><span class="chip-dot"></span><span>عن الشركة</span></div>
+        <h2 class="sec-title">ربط مصر بأسواق العالم</h2>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:24px">الوليد للتصدير والاستيراد — رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى أسواق الخليج وأوروبا.</p>
+        <div class="af"><div class="af-icon">🎯</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px">رؤيتنا</div><div style="font-size:14px;color:var(--text2)">أن نكون الشريك الأول للمستوردين في الشرق الأوسط وأوروبا.</div></div></div>
+        <div class="af"><div class="af-icon">🌱</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px">رسالتنا</div><div style="font-size:14px;color:var(--text2)">توصيل أجود المحاصيل المصرية بمعايير جودة عالمية.</div></div></div>
+        <div class="af"><div class="af-icon">⚡</div><div><div style="font-size:15px;font-weight:700;margin-bottom:3px">ميزتنا</div><div style="font-size:14px;color:var(--text2)">شبكة موردين موثوقة + سلسلة تبريد كاملة + خبرة جمركية.</div></div></div>
       </div>
       <div class="reveal d1">
         <div class="col2" style="gap:12px">
-          <div class="card" style="padding:20px;text-align:center;background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.15)"><div style="font-size:30px;margin-bottom:8px">🌾</div><div style="font-size:12px;color:var(--text2)" id="ab-p1">مكونات طازجة يومياً</div></div>
-          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🚛</div><div style="font-size:12px;color:var(--text2)" id="ab-p2">لوجستيات متكاملة</div></div>
-          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🌍</div><div style="font-size:12px;color:var(--text2)" id="ab-p3">شبكة في 6 دول</div></div>
-          <div class="card" style="padding:20px;text-align:center;background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.15)"><div style="font-size:30px;margin-bottom:8px">🏆</div><div style="font-size:12px;color:var(--text2)" id="ab-p4">GlobalGAP معتمد</div></div>
+          <div class="card" style="padding:20px;text-align:center;background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.15)"><div style="font-size:30px;margin-bottom:8px">🌾</div><div style="font-size:12px;color:var(--text2)">منتجات طازجة يومياً</div></div>
+          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🚛</div><div style="font-size:12px;color:var(--text2)">لوجستيات متكاملة</div></div>
+          <div class="card" style="padding:20px;text-align:center"><div style="font-size:30px;margin-bottom:8px">🌍</div><div style="font-size:12px;color:var(--text2)">شبكة في 6 دول</div></div>
+          <div class="card" style="padding:20px;text-align:center;background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.15)"><div style="font-size:30px;margin-bottom:8px">🏆</div><div style="font-size:12px;color:var(--text2)">GlobalGAP معتمد</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ REQUEST FORM ══════════ -->
+<!-- REQUEST FORM -->
 <section class="section" id="request" style="background:var(--bg2);border-top:1px solid var(--border)">
   <div class="wrap">
     <div class="col2" style="gap:56px;align-items:flex-start">
       <div class="reveal">
-        <div class="chip"><span class="chip-dot"></span><span id="rf-chip">اطلب خدمة</span></div>
-        <h2 class="sec-title" id="rf-title">ابدأ شراكتك معنا</h2>
-        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:28px" id="rf-desc">أرسل طلبك وسيتواصل معك فريقنا خلال 24-48 ساعة.</p>
+        <div class="chip"><span class="chip-dot"></span><span>اطلب خدمة</span></div>
+        <h2 class="sec-title">ابدأ شراكتك معنا</h2>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:28px">أرسل طلبك وسيتواصل معك فريقنا خلال 24-48 ساعة.</p>
         <div style="display:flex;flex-direction:column;gap:18px">
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">1</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st1t">أرسل طلبك</div><div style="font-size:13px;color:var(--text2)" id="st1d">بمعلوماتك واحتياجاتك.</div></div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">أرسل طلبك</div><div style="font-size:13px;color:var(--text2)">بمعلوماتك واحتياجاتك.</div></div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">2</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st2t">نتواصل معك</div><div style="font-size:13px;color:var(--text2)" id="st2d">خلال 24-48 ساعة.</div></div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">نتواصل معك</div><div style="font-size:13px;color:var(--text2)">خلال 24-48 ساعة.</div></div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:30px;height:30px;border-radius:50%;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand);flex-shrink:0">3</div>
-            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px" id="st3t">نبدأ الشحن</div><div style="font-size:13px;color:var(--text2)" id="st3d">عرض مخصص ثم تنفيذ.</div></div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:2px">نبدأ الشحن</div><div style="font-size:13px;color:var(--text2)">عرض مخصص ثم تنفيذ.</div></div>
           </div>
         </div>
       </div>
       <div class="reveal d1">
         <div class="form-card">
           <div id="form-body">
-            <div style="font-size:19px;font-weight:800;margin-bottom:4px" id="rf-ftitle">أرسل طلبك</div>
-            <div style="font-size:13px;color:var(--text2);margin-bottom:22px" id="rf-fsub">الحقول المعلّمة بـ * مطلوبة</div>
+            <div style="font-size:19px;font-weight:800;margin-bottom:4px">أرسل طلبك</div>
+            <div style="font-size:13px;color:var(--text2);margin-bottom:22px">الحقول المعلّمة بـ * مطلوبة</div>
             <form id="req-form" novalidate>
               <div class="form-grid">
                 <div class="f-group">
-                  <label class="f-label" id="lbl-name">الاسم <span class="f-req">*</span></label>
+                  <label class="f-label">الاسم <span class="f-req">*</span></label>
                   <input class="f-input" id="f-name" autocomplete="name" placeholder="أحمد محمد"/>
-                  <div class="f-err" id="e-name">الاسم مطلوب</div>
+                  <div class="f-err" id="e-name">الاسم مطلوب (حرفان على الأقل)</div>
                 </div>
                 <div class="f-group">
-                  <label class="f-label" id="lbl-company">الشركة</label>
+                  <label class="f-label">الشركة</label>
                   <input class="f-input" id="f-company" placeholder="اسم الشركة"/>
                 </div>
                 <div class="f-group">
-                  <label class="f-label" id="lbl-phone">الهاتف <span class="f-req">*</span></label>
+                  <label class="f-label">الهاتف <span class="f-req">*</span></label>
                   <input class="f-input" id="f-phone" type="tel" dir="ltr" placeholder="+971 50 123 4567" autocomplete="tel"/>
                   <div class="f-err" id="e-phone">رقم هاتف صحيح مطلوب</div>
                 </div>
                 <div class="f-group">
-                  <label class="f-label" id="lbl-email">البريد الإلكتروني</label>
+                  <label class="f-label">البريد الإلكتروني</label>
                   <input class="f-input" id="f-email" type="email" dir="ltr" placeholder="email@company.com"/>
                 </div>
                 <div class="f-group">
-                  <label class="f-label" id="lbl-country">الدولة</label>
+                  <label class="f-label">الدولة</label>
                   <select class="f-input" id="f-country" style="appearance:none">
                     <option value="">— اختر —</option>
                     <option>الإمارات العربية المتحدة</option><option>المملكة العربية السعودية</option>
@@ -422,7 +417,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
                   </select>
                 </div>
                 <div class="f-group">
-                  <label class="f-label" id="lbl-service">الخدمة <span class="f-req">*</span></label>
+                  <label class="f-label">الخدمة <span class="f-req">*</span></label>
                   <select class="f-input" id="f-service" style="appearance:none">
                     <option value="">— اختر —</option>
                     <option value="fresh_produce_export">تصدير منتجات طازجة</option>
@@ -435,7 +430,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
                   <div class="f-err" id="e-service">اختر نوع الخدمة</div>
                 </div>
                 <div class="f-group form-full">
-                  <label class="f-label" id="lbl-desc">تفاصيل الطلب</label>
+                  <label class="f-label">تفاصيل الطلب</label>
                   <textarea class="f-input f-textarea" id="f-desc" placeholder="اذكر المنتجات والكميات والتواريخ..."></textarea>
                   <div style="font-size:11px;color:var(--text3);margin-top:3px"><span id="cc">0</span>/1000</div>
                 </div>
@@ -443,15 +438,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
               <button type="submit" class="f-submit" id="f-btn">
                 <span id="f-btn-txt">إرسال الطلب</span><span id="f-btn-ico">→</span>
               </button>
-              <div class="f-err" id="f-global-err" style="margin-top:10px;font-size:13px"></div>
+              <div class="f-err" id="f-global-err" style="margin-top:10px;font-size:13px;text-align:center"></div>
             </form>
           </div>
           <div class="success-box" id="success-box">
             <div class="success-icon">✅</div>
-            <div style="font-size:20px;font-weight:800;margin-bottom:8px" id="suc-title">تم استلام طلبك!</div>
-            <div style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px" id="suc-desc">سيتواصل معك فريقنا خلال 24-48 ساعة.</div>
+            <div style="font-size:20px;font-weight:800;margin-bottom:8px">تم استلام طلبك!</div>
+            <div style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px">سيتواصل معك فريقنا خلال 24-48 ساعة.</div>
             <div id="suc-ref" style="font-family:monospace;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--brand);font-size:14px;margin-bottom:16px"></div>
-            <button onclick="resetForm()" class="btn btn-outline" style="width:100%;justify-content:center" id="suc-btn">إرسال طلب آخر</button>
+            <button onclick="resetForm()" class="btn btn-outline" style="width:100%;justify-content:center">إرسال طلب آخر</button>
           </div>
         </div>
       </div>
@@ -459,17 +454,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   </div>
 </section>
 
-<!-- ══════════ CONTACT ══════════ -->
+<!-- CONTACT -->
 <section class="section-sm" id="contact">
   <div class="wrap">
     <div class="center" style="margin-bottom:32px">
-      <div class="chip"><span class="chip-dot"></span><span id="ct-chip">تواصل</span></div>
-      <h2 class="sec-title" id="ct-title">نحن هنا لخدمتك</h2>
+      <div class="chip"><span class="chip-dot"></span><span>تواصل</span></div>
+      <h2 class="sec-title">نحن هنا لخدمتك</h2>
     </div>
     <div class="col4">
       <a href="tel:+201001234567" class="card contact-card" style="text-decoration:none">
         <div class="c-icon" style="background:rgba(249,115,22,.1)">📞</div>
-        <div style="font-size:14px;font-weight:700" id="ct1l">اتصل بنا</div>
+        <div style="font-size:14px;font-weight:700">اتصل بنا</div>
         <div style="font-size:13px;color:var(--text2)">+20 100 123 4567</div>
       </a>
       <a href="https://wa.me/201001234567" target="_blank" class="card contact-card" style="text-decoration:none">
@@ -477,15 +472,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
         <div style="font-size:14px;font-weight:700">WhatsApp</div>
         <div style="font-size:13px;color:var(--text2)">+20 100 123 4567</div>
       </a>
-      <a href="mailto:info@spark-export.com" class="card contact-card" style="text-decoration:none">
+      <a href="mailto:info@alwalid-export.com" class="card contact-card" style="text-decoration:none">
         <div class="c-icon" style="background:rgba(59,130,246,.1)">✉️</div>
-        <div style="font-size:14px;font-weight:700" id="ct3l">البريد</div>
-        <div style="font-size:13px;color:var(--text2)">info@spark-export.com</div>
+        <div style="font-size:14px;font-weight:700">البريد</div>
+        <div style="font-size:13px;color:var(--text2)">info@alwalid-export.com</div>
       </a>
       <div class="card contact-card">
         <div class="c-icon" style="background:rgba(234,179,8,.1)">📍</div>
-        <div style="font-size:14px;font-weight:700" id="ct4l">العنوان</div>
-        <div style="font-size:13px;color:var(--text2)" id="ct4v">القاهرة، مصر</div>
+        <div style="font-size:14px;font-weight:700">العنوان</div>
+        <div style="font-size:13px;color:var(--text2)">القاهرة، مصر</div>
       </div>
     </div>
   </div>
@@ -495,15 +490,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="nav-logo" style="margin-bottom:12px"><div class="nav-mark">S</div><div class="nav-name"><span>SPARK</span> Export</div></div>
-        <p style="font-size:14px;color:var(--text2);line-height:1.7;max-width:260px" id="ft-desc">رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم منذ 2009.</p>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div class="nav-mark">و</div>
+          <div class="nav-name"><span>الوليد</span> للتصدير</div>
+        </div>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;max-width:260px">رائدون في تصدير المنتجات الزراعية الطازجة من مصر إلى العالم منذ 2009.</p>
       </div>
       <div><div class="footer-col-title">روابط</div><ul class="footer-links"><li><a href="#services">خدماتنا</a></li><li><a href="#markets">أسواقنا</a></li><li><a href="#about">عن الشركة</a></li><li><a href="#request">اطلب خدمة</a></li></ul></div>
       <div><div class="footer-col-title">الخدمات</div><ul class="footer-links"><li><a href="#services">تصدير المنتجات</a></li><li><a href="#services">لوجستيات</a></li><li><a href="#services">تصنيع</a></li><li><a href="#services">ضبط الجودة</a></li></ul></div>
-      <div><div class="footer-col-title">تواصل</div><ul class="footer-links"><li><a href="mailto:info@spark-export.com">info@spark-export.com</a></li><li><a href="tel:+201001234567">+20 100 123 4567</a></li><li><a href="#contact">القاهرة، مصر</a></li></ul></div>
+      <div><div class="footer-col-title">تواصل</div><ul class="footer-links"><li><a href="mailto:info@alwalid-export.com">info@alwalid-export.com</a></li><li><a href="tel:+201001234567">+20 100 123 4567</a></li><li><a href="#contact">القاهرة، مصر</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy" id="ft-copy">© 2026 SPARK Export. جميع الحقوق محفوظة.</div>
+      <div class="footer-copy">© 2026 الوليد للتصدير والاستيراد. جميع الحقوق محفوظة.</div>
       <div style="font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px">🔒 موقع آمن</div>
     </div>
   </div>
@@ -514,28 +512,28 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 0 2
 <script>
 'use strict';
 
-/* ════════════════════════════════════
-   SUPABASE CONFIG — SET THESE
-════════════════════════════════════ */
-const SUPABASE_URL = window.SUPABASE_URL || 'https://vlzulxtxflyhrnszktpm.supabase.co';
-const SUPABASE_KEY = window.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsenVseHR4Zmx5aHJuc3prdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjgxNDQsImV4cCI6MjA5MjEwNDE0NH0.iK7z2Tkbb-ncz-sTyg-myDojqoFEYfrKfCT-nRXfJbQ';
+/* ══════════════════════════════════════════════
+   SUPABASE CONFIG — الوليد ERP
+══════════════════════════════════════════════ */
+const SUPABASE_URL = 'https://vlzulxtxflyhrnszktpm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsenVseHR4Zmx5aHJuc3prdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjgxNDQsImV4cCI6MjA5MjEwNDE0NH0.iK7z2Tkbb-ncz-sTyg-myDojqoFEYfrKfCT-nRXfJbQ';
 
 let sb = null;
+
 function initSB() {
-  if (SUPABASE_URL === 'YOUR_SUPABASE_URL') return false;
   try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); return true; }
   catch(e) { return false; }
 }
 
-/* ════════════════════════════════════
-   NAV
-════════════════════════════════════ */
+/* ── NAV ── */
 let mOpen = false;
 function toggleMobile() { mOpen = !mOpen; document.getElementById('mobile-menu').classList.toggle('open', mOpen); }
 function closeMobile()  { mOpen = false; document.getElementById('mobile-menu').classList.remove('open'); }
+
 window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
 });
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const el = document.querySelector(a.getAttribute('href'));
@@ -543,48 +541,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ════════════════════════════════════
-   SCROLL REVEAL
-════════════════════════════════════ */
+/* ── SCROLL REVEAL ── */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
 }, { threshold:.1, rootMargin:'0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ════════════════════════════════════
-   THEME
-════════════════════════════════════ */
+/* ── THEME ── */
 let isLight = false;
 function toggleTheme() {
   isLight = !isLight;
   document.body.classList.toggle('light', isLight);
   document.getElementById('main-nav').classList.toggle('light', isLight);
-  localStorage.setItem('spark-theme', isLight ? 'light' : 'dark');
+  localStorage.setItem('alwalid-theme', isLight ? 'light' : 'dark');
 }
 
-/* ════════════════════════════════════
-   LANGUAGE
-════════════════════════════════════ */
-let lang = 'ar';
-const T = {
-  ar: { 'h-badge':'رائدون في تصدير المنتجات الطازجة','h-cta1':'اطلب خدمة الآن →','h-cta2':'تعرف علينا','nav-cta':'اطلب خدمة','lang-btn':'EN','rf-ftitle':'أرسل طلبك','f-btn-txt':'إرسال الطلب','suc-title':'تم استلام طلبك!','suc-desc':'سيتواصل معك فريقنا خلال 24-48 ساعة.','suc-btn':'إرسال طلب آخر' },
-  en: { 'h-badge':'Leading Fresh Produce Exporters','h-cta1':'Request Service →','h-cta2':'Learn More','nav-cta':'Get Started','lang-btn':'ع','rf-ftitle':'Send Your Request','f-btn-txt':'Send Request','suc-title':'Request Received!','suc-desc':'Our team will contact you within 24-48 hours.','suc-btn':'Send Another' }
-};
-function toggleLang() {
-  lang = lang === 'ar' ? 'en' : 'ar';
-  document.documentElement.lang = lang;
-  document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
-  Object.entries(T[lang]).forEach(([k,v]) => { const el=document.getElementById(k); if(el) el.textContent=v; });
-}
-
-/* ════════════════════════════════════
-   FORM
-════════════════════════════════════ */
+/* ── FORM CHARACTER COUNTER ── */
 document.getElementById('f-desc').addEventListener('input', function() {
   document.getElementById('cc').textContent = this.value.length;
-  if (this.value.length > 1000) this.value = this.value.slice(0,1000);
+  if (this.value.length > 1000) this.value = this.value.slice(0, 1000);
 });
 
+/* ── FORM VALIDATION ── */
 function showFErr(fieldId, errId, show) {
   document.getElementById(fieldId)?.classList.toggle('err', show);
   document.getElementById(errId)?.classList.toggle('show', show);
@@ -595,18 +573,29 @@ function validateForm() {
   const name  = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
   const svc   = document.getElementById('f-service').value;
-  if (name.length < 2)  { showFErr('f-name','e-name',true);    ok=false; } else showFErr('f-name','e-name',false);
-  if (phone.length < 7 || !/^[+\d\s()\-]+$/.test(phone)) { showFErr('f-phone','e-phone',true); ok=false; } else showFErr('f-phone','e-phone',false);
+
+  // Name
+  if (name.length < 2) { showFErr('f-name','e-name',true); ok=false; } else showFErr('f-name','e-name',false);
+  // Phone — flexible international format
+  const phoneClean = phone.replace(/[\s()\-]/g,'');
+  if (phoneClean.length < 7 || !/^[+\d]+$/.test(phoneClean)) { showFErr('f-phone','e-phone',true); ok=false; } else showFErr('f-phone','e-phone',false);
+  // Service
   if (!svc) { showFErr('f-service','e-service',true); ok=false; } else showFErr('f-service','e-service',false);
+  // Email optional but validate if entered
+  const email = document.getElementById('f-email').value.trim();
+  if (email && !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+    ok=false; showToast('يرجى إدخال بريد إلكتروني صحيح','error');
+  }
   return ok;
 }
 
+/* ── FORM SUBMIT — writes directly to Supabase customer_requests ── */
 document.getElementById('req-form').addEventListener('submit', async e => {
   e.preventDefault();
   if (!validateForm()) return;
 
-  const btn    = document.getElementById('f-btn');
-  const gErr   = document.getElementById('f-global-err');
+  const btn   = document.getElementById('f-btn');
+  const gErr  = document.getElementById('f-global-err');
   gErr.classList.remove('show');
   document.getElementById('f-btn-txt').textContent = 'جارٍ الإرسال...';
   document.getElementById('f-btn-ico').textContent = '⟳';
@@ -620,20 +609,45 @@ document.getElementById('req-form').addEventListener('submit', async e => {
     country:      document.getElementById('f-country').value || null,
     service_type: document.getElementById('f-service').value,
     description:  document.getElementById('f-desc').value.trim() || null,
+    status:       'new',
+  };
+
+  let retries = 2;
+  const submit = async () => {
+    try {
+      if (!sb) { initSB(); if(!sb) throw new Error('لم يتم الاتصال بالخادم — يرجى تحديث الصفحة'); }
+
+      const { data, error } = await sb
+        .from('customer_requests')
+        .insert(payload)
+        .select('id')
+        .single();
+
+      if (error) {
+        // RLS permission error — give helpful message
+        if (error.code==='42501'||error.message?.includes('permission')||error.message?.includes('policy')) {
+          throw new Error('خطأ في إعدادات قاعدة البيانات — يرجى التواصل معنا على الهاتف');
+        }
+        throw new Error(error.message);
+      }
+      showSuccess(data.id.slice(0, 8).toUpperCase());
+      return;
+
+    } catch(err) {
+      if (retries-->0 && err.message?.includes('network')) {
+        await new Promise(r=>setTimeout(r,1000));
+        return submit();
+      }
+      throw err;
+    }
   };
 
   try {
-    if (!sb) {
-      // Demo mode — simulate success
-      await new Promise(r => setTimeout(r, 1200));
-      showSuccess('DEMO-' + Date.now().toString(36).toUpperCase().slice(-6));
-    } else {
-      const { data, error } = await sb.from('customer_requests').insert(payload).select('id').single();
-      if (error) throw new Error(error.message);
-      showSuccess(data.id.slice(0,8).toUpperCase());
-    }
+    await submit();
   } catch(err) {
-    gErr.textContent = '❌ ' + (err.message || 'حدث خطأ. يرجى المحاولة مرة أخرى.');
+    console.error('Form error:', err);
+    const errMsg = err.message || 'حدث خطأ. يرجى المحاولة مرة أخرى.';
+    gErr.textContent = '❌ ' + (errMsg.includes('permission') ? 'خطأ في الصلاحيات — يرجى التواصل معنا مباشرة' : errMsg);
     gErr.classList.add('show');
     document.getElementById('f-btn-txt').textContent = 'إرسال الطلب';
     document.getElementById('f-btn-ico').textContent = '→';
@@ -655,30 +669,40 @@ function resetForm() {
   document.getElementById('cc').textContent = '0';
   ['f-name','f-phone','f-service'].forEach(id => document.getElementById(id)?.classList.remove('err'));
   ['e-name','e-phone','e-service','f-global-err'].forEach(id => document.getElementById(id)?.classList.remove('show'));
+  document.getElementById('f-btn-txt').textContent = 'إرسال الطلب';
+  document.getElementById('f-btn-ico').textContent = '→';
+  document.getElementById('f-btn').disabled = false;
 }
 
-/* ════════════════════════════════════
-   TOAST
-════════════════════════════════════ */
+/* ── TOAST ── */
 function showToast(msg, type='info') {
   const t = document.createElement('div');
-  t.className = 'toast';
-  t.textContent = msg;
+  t.className = 'toast'; t.textContent = msg;
   document.getElementById('toast-wrap').appendChild(t);
   setTimeout(() => { t.style.transition='all .3s'; t.style.opacity='0'; t.style.transform='translateY(10px)'; setTimeout(()=>t.remove(),300); }, 3200);
 }
 
-/* ════════════════════════════════════
-   INIT
-════════════════════════════════════ */
+/* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
   // Restore theme
-  if (localStorage.getItem('spark-theme') === 'light') {
+  if (localStorage.getItem('alwalid-theme') === 'light') {
     isLight = true;
     document.body.classList.add('light');
     document.getElementById('main-nav').classList.add('light');
   }
-  initSB();
+  const connected = initSB();
+  if (!connected) {
+    console.warn('Supabase not configured');
+  } else {
+    // Warm up connection + verify anon INSERT policy
+    sb.from('customer_requests')
+      .select('id', { count: 'exact', head: true })
+      .then(({ error }) => {
+        if (error && error.code === '42501') {
+          console.error('RLS policy missing — run rls_fix_patch.sql in Supabase');
+        }
+      });
+  }
 });
 </script>
 </body>
